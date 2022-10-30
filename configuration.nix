@@ -89,6 +89,7 @@
   users.users.sigkill = {
     isNormalUser = true;
     description = "sigkill";
+    shell = pkgs.fish;
     extraGroups = [ "networkmanager" "wheel" ];
     packages = with pkgs; [
     ];

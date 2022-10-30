@@ -7,12 +7,14 @@
   home.homeDirectory = "/home/sigkill";
   
   home.sessionVariables = {
-    EDITOR = "nvim";
+    EDITOR="nvim";
   };
 
   # Packages that should be installed to the user profile.
   home.packages = with pkgs; [
+    fish
     firefox
+    fish
     neovim
     tree
     tldr
@@ -32,6 +34,13 @@
 
   # Let Home Manager install and manage itself.
   programs.home-manager.enable = true;
+
+  programs.fish = {
+    enable = true;
+    shellAliases = {
+      mv = "mv -i";
+    };
+  };
 
   services.gpg-agent = {
     enable = true;
