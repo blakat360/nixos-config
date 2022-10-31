@@ -13,6 +13,9 @@
   # Packages that should be installed to the user profile.
   home.packages = with pkgs; [
     fish
+    fzf
+    fd
+    z-lua
     firefox
     fish
     neovim
@@ -20,6 +23,7 @@
     tldr
     git
     bat
+    discord
   ];
 
   # This value determines the Home Manager release that your
@@ -35,12 +39,25 @@
   # Let Home Manager install and manage itself.
   programs.home-manager.enable = true;
 
-  programs.fish = {
-    enable = true;
-    shellAliases = {
-      mv = "mv -i";
+  programs = {
+    command-not-found.enable = false;
+    nix-index = {
+      enable = true;
+      enableFishIntegration = true;
     };
-  };
+    fish = {
+      enable = true;
+      shellAliases = {
+        mv = "mv -i";
+      };
+      plugins = [ 
+        { name = "grc"; src = pkgs.fishPlugins.grc.src; }
+        { name = "bass"; src = pkgs.fishPlugins.bass.src; }
+        { name = "hydro"; src = pkgs.fishPlugins.hydro.src; }
+        { name = "fzf-fish"; src = pkgs.fishPlugins.fzf-fish.src; }
+      ];
+    };
+ };
 
   services.gpg-agent = {
     enable = true;

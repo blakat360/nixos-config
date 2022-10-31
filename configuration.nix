@@ -102,6 +102,8 @@
   # $ nix search wget
   environment.systemPackages = with pkgs; [
     comma
+    nvfetcher
+    grc
   ];
 
   # Some programs need SUID wrappers, can be configured further or are
