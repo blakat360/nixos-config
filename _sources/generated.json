@@ -1,0 +1,38 @@
+{
+    "getopts": {
+        "cargoLocks": null,
+        "extract": null,
+        "name": "getopts",
+        "passthru": null,
+        "pinned": true,
+        "src": {
+            "deepClone": false,
+            "fetchSubmodules": false,
+            "leaveDotGit": false,
+            "name": null,
+            "rev": "58cf6a17c5feb6447673411836b9d37ef2ed9772",
+            "sha256": "sha256-G93q005l5yzV5kK0IFAFsNga/NJNC/tRyYT2tpnCbgw=",
+            "type": "git",
+            "url": "https://github.com/oh-my-fish/plugin-getopts"
+        },
+        "version": "58cf6a17c5feb6447673411836b9d37ef2ed9772"
+    },
+    "z": {
+        "cargoLocks": null,
+        "extract": null,
+        "name": "z",
+        "passthru": null,
+        "pinned": true,
+        "src": {
+            "deepClone": false,
+            "fetchSubmodules": false,
+            "leaveDotGit": false,
+            "name": null,
+            "rev": "85f863f20f24faf675827fb00f3a4e15c7838d76",
+            "sha256": "sha256-+FUBM7CodtZrYKqU542fQD+ZDGrd2438trKM0tIESs0=",
+            "type": "git",
+            "url": "https://github.com/jethrokuan/z"
+        },
+        "version": "85f863f20f24faf675827fb00f3a4e15c7838d76"
+    }
+}

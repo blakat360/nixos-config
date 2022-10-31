@@ -1,5 +1,8 @@
 { config, pkgs, ... }:
 
+let
+  generated = import ./_sources/generated.nix {inherit (pkgs) fetchurl fetchgit fetchFromGitHub; };
+in
 {
   # Home Manager needs a bit of information about you and the
   # paths it should manage.
@@ -14,6 +17,7 @@
   home.packages = with pkgs; [
     fish
     fzf
+    ripgrep
     fd
     z-lua
     firefox
@@ -50,10 +54,11 @@
       shellAliases = {
         mv = "mv -i";
       };
-      plugins = [ 
+      plugins = with generated; [ 
+        { name = getopts.pname; src = getopts.src; }
+        { name = z.pname; src = z.src; }
         { name = "grc"; src = pkgs.fishPlugins.grc.src; }
         { name = "bass"; src = pkgs.fishPlugins.bass.src; }
-        { name = "hydro"; src = pkgs.fishPlugins.hydro.src; }
         { name = "fzf-fish"; src = pkgs.fishPlugins.fzf-fish.src; }
       ];
     };

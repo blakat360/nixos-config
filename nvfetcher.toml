@@ -1,0 +1,8 @@
+[getopts]
+src.git = "https://github.com/oh-my-fish/plugin-getopts"
+fetch.git = "https://github.com/oh-my-fish/plugin-getopts"
+pinned = true
+[z]
+src.git = "https://github.com/jethrokuan/z"
+fetch.git = "https://github.com/jethrokuan/z"
+pinned = true
