@@ -4,6 +4,7 @@ let
   generated = import ./_sources/generated.nix {inherit (pkgs) fetchurl fetchgit fetchFromGitHub; };
 in
 {
+  imports = [ ./starship_settings.nix ];
   # Home Manager needs a bit of information about you and the
   # paths it should manage.
   home.username = "sigkill";
@@ -16,6 +17,7 @@ in
   # Packages that should be installed to the user profile.
   home.packages = with pkgs; [
     fish
+    starship
     fzf
     ripgrep
     fd
@@ -48,6 +50,9 @@ in
     nix-index = {
       enable = true;
       enableFishIntegration = true;
+    };
+    starship = {
+      enable = true;
     };
     fish = {
       enable = true;
