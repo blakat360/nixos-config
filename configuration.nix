@@ -7,6 +7,7 @@
 {
   imports =
     [
+      ./gnome.nix
     ];
 
   nix = {
@@ -38,26 +39,16 @@
   # Set your time zone.
   time.timeZone = "Europe/London";
 
-  # Select internationalisation properties.
   i18n.defaultLocale = "en_GB.utf8";
-
-  # Enable the X11 windowing system.
-  services.xserver.enable = true;
-
-  # Enable the GNOME Desktop Environment.
-  services.xserver.displayManager.gdm = {
-    enable = true;
-    wayland = false;
-  };
-  services.xserver.desktopManager.gnome.enable = true;
 
   # Configure keymap in X11
   services.xserver = {
-    layout = "gb";
-    xkbVariant = "";
+      enable = true;
+      layout = "gb";
+      xkbOptions = "caps:escape_shifted_capslock";
   };
 
-  # Configure console keymap
+  # keymap in tty
   console.keyMap = "uk";
 
   # Enable CUPS to print documents.
