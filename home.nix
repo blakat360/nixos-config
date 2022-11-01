@@ -4,7 +4,10 @@ let
   generated = import ./_sources/generated.nix {inherit (pkgs) fetchurl fetchgit fetchFromGitHub; };
 in
 {
-  imports = [ ./starship_settings.nix ];
+  imports = [ 
+    ./starship_settings.nix 
+    ./discord.nix
+  ];
   # Home Manager needs a bit of information about you and the
   # paths it should manage.
   home.username = "sigkill";
@@ -29,7 +32,6 @@ in
     tldr
     git
     bat
-    discord
   ];
 
   # This value determines the Home Manager release that your
@@ -53,6 +55,20 @@ in
     };
     starship = {
       enable = true;
+    };
+    git = {
+      enable = true;
+      delta = {
+        enable = true;
+	options = {navigate = true; light = false;};
+      };
+      extraConfig = {
+        user.email = "blakat360@gmail.com";
+        add.interactive.useBuiltin = false;
+        merge.conflictstyle = "diff3";
+        diff.colorMoved = "default";
+        init.defaultBranch = "master";
+      };
     };
     fish = {
       enable = true;
