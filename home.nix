@@ -26,7 +26,6 @@ in
     fzf
     git
     kakoune
-    neovim
     ripgrep
     starship
     tldr
@@ -44,8 +43,10 @@ in
   # changes in each release.
   home.stateVersion = "22.05";
 
+
   # Let Home Manager install and manage itself.
   programs.home-manager.enable = true;
+
 
   programs = {
     command-not-found.enable = false;
@@ -81,12 +82,12 @@ in
       };
       plugins = with generated; [ 
         { name = getopts.pname; src = getopts.src; }
-        { name = z.pname; src = z.src; }
         { name = "grc"; src = pkgs.fishPlugins.grc.src; }
         { name = "bass"; src = pkgs.fishPlugins.bass.src; }
         { name = "fzf-fish"; src = pkgs.fishPlugins.fzf-fish.src; }
       ];
     };
+    zoxide.enable = true;
  };
 
   services.gpg-agent = {

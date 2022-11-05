@@ -13,16 +13,4 @@
       sha256 = "sha256-G93q005l5yzV5kK0IFAFsNga/NJNC/tRyYT2tpnCbgw=";
     };
   };
-  z = {
-    pname = "z";
-    version = "85f863f20f24faf675827fb00f3a4e15c7838d76";
-    src = fetchgit {
-      url = "https://github.com/jethrokuan/z";
-      rev = "85f863f20f24faf675827fb00f3a4e15c7838d76";
-      fetchSubmodules = false;
-      deepClone = false;
-      leaveDotGit = false;
-      sha256 = "sha256-+FUBM7CodtZrYKqU542fQD+ZDGrd2438trKM0tIESs0=";
-    };
-  };
 }
