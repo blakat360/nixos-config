@@ -14,25 +14,24 @@ in
   home.homeDirectory = "/home/sigkill";
   
   home.sessionVariables = {
-    EDITOR="nvim";
+    EDITOR="kak";
   };
 
   # Packages that should be installed to the user profile.
   home.packages = with pkgs; [
-    xsel
-    fish
-    starship
-    fzf
-    ripgrep
+    bat
     fd
-    z-lua
     firefox
     fish
-    neovim
-    tree
-    tldr
+    fzf
     git
-    bat
+    kakoune
+    neovim
+    ripgrep
+    starship
+    tldr
+    tree
+    xsel
   ];
 
   # This value determines the Home Manager release that your
@@ -59,6 +58,10 @@ in
     };
     git = {
       enable = true;
+      aliases = {
+        s = "status";
+        d = "diff";
+      };
       delta = {
         enable = true;
 	options = {navigate = true; light = false;};
