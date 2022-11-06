@@ -7,7 +7,7 @@
 {
   imports =
     [
-      ./gnome.nix
+      ./wm/gnome.nix
     ];
 
   nix = {
