@@ -1,4 +1,4 @@
-{ config, pkgs, callPackage, ... }:
+{ config, lib, pkgs, callPackage, ... }:
 
 let
   mod = "Mod4";
@@ -8,10 +8,9 @@ in
    services.xserver = {
      enable = true;
      autorun = false;
-     displayManager.defaultSession = "none+i3";
-     desktopManager = {
-       default = "none";
-       xterm.enable = false;
+     displayManager = {
+       defaultSession = "startx+i3";
+       startx.enable = true;
      };
      windowManager.i3 = {
        enable = true;
@@ -22,8 +21,8 @@ in
          i3blocks #if you are planning on using i3blocks over i3status
        ];
      };
-     config = {
-       "${mod}+Return" = "exec st";
-     };
+     # config = ''
+     #   ${mod}+Return = exec st;
+     # '';
    };
 }

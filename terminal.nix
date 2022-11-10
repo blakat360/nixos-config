@@ -6,11 +6,9 @@ in
 {
   imports = [
     ./starship_settings.nix
+    ./kakoune
   ];
-  home.sessionVariables = {
-    EDITOR="kak";
-  };
-
+  
   home.packages = with pkgs; [
     st
     bat
@@ -18,7 +16,6 @@ in
     fish
     fzf
     git
-    kakoune
     python3 # needed for bass plugin
     ripgrep
     starship

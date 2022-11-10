@@ -73,7 +73,10 @@
 
   services.xserver.libinput = {
     enable = true;
-    touchpad.tapping = true;
+    touchpad =  {
+      tapping = true;
+      naturalScrolling = true;
+    };
   };
 
   # Define a user account. Don't forget to set a password with ‘passwd’.
