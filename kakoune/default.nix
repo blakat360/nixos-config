@@ -3,15 +3,12 @@
 
 {
   imports = [
+    ./lsp.nix
   ];
 
   home.sessionVariables = {
     EDITOR="kak";
   };
-
-  home.packages = with pkgs; [
-    kakoune
-  ];
 
   programs.kakoune = {
     enable = true;
