@@ -10,17 +10,20 @@ in
   ];
   
   home.packages = with pkgs; [
-    st
     bat
     fd
+    file
     fish
     fzf
     git
-    python3 # needed for bass plugin
+    python3 # needed for bass fish plugin
     ripgrep
+    st
     starship
     tldr
     tree
+    unzip
+    wget
     xsel
   ];
 
