@@ -2,6 +2,7 @@
 
 {
   home.packages = with pkgs; [
+    rnix-lsp
     rust-analyzer
     python310Packages.python-lsp-server
   ];
@@ -39,6 +40,11 @@
       roots = ["requirements.txt", "setup.py", ".git", ".hg"]
       command = "pylsp"
       offset_encoding = "utf-8"
+
+      [language.nix]
+      filetypes = ["nix"]
+      roots = ["flake.nix", "shell.nix", ".git"]
+      command = "rnix-lsp"
     '';
   };
 }
