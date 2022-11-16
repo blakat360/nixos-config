@@ -12,7 +12,7 @@
     extraConfig = ''
       # enable kak-lsp for following filetypes
       eval %sh{kak-lsp --kakoune -s $kak_session}
-      hook global WinSetOption filetype=(rust|python|go|javascript|typescript|c|cpp) %{
+      hook global WinSetOption filetype=(rust|python|go|javascript|typescript|c|cpp|nix) %{
             lsp-enable-window
       }
 

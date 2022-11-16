@@ -17,6 +17,10 @@
       tabStop = 2;
       indentWidth = 2;
       colorScheme = "solarized-dark";
+      ui.assistant = "cat";
     };
+    extraConfig = ''
+      map global normal <space> ':enter-user-mode<space>user<ret>' -docstring 'leader key'
+    '';
   };
 }
