@@ -15,6 +15,12 @@
   boot.extraModulePackages = [ ];
 
   services.xserver.videoDrivers = [ "nvidia" ];
+#  services.xserver.monitorSection = ''
+#    Section "Monitor"
+#        Identifier             "DP-4"
+#        DisplaySize            344 193 # In millimeters
+#    EndSection
+#  '';
   hardware.opengl.enable = true;
 
   fileSystems."/" =
