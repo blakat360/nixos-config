@@ -3,6 +3,7 @@
 
 {
   imports = [
+    ./fuzzy-finder.nix
     ./lsp.nix
   ];
 
@@ -19,8 +20,5 @@
       colorScheme = "solarized-dark";
       ui.assistant = "cat";
     };
-    extraConfig = ''
-      map global normal <space> ':enter-user-mode<space>user<ret>' -docstring 'leader key'
-    '';
   };
 }

@@ -45,7 +45,7 @@
   services.xserver = {
       enable = true;
       layout = "gb";
-      xkbOptions = "caps:escape_shifted_capslock";
+      xkbOptions = "ctrl:swapcaps";
   };
 
   # keymap in tty

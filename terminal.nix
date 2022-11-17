@@ -1,14 +1,14 @@
-{config, pkgs, ...}:
+{ config, pkgs, ... }:
 
 let
-  generated = import ./_sources/generated.nix {inherit (pkgs) fetchurl fetchgit fetchFromGitHub; };
+  generated = import ./_sources/generated.nix { inherit (pkgs) fetchurl fetchgit fetchFromGitHub; };
 in
 {
   imports = [
     ./starship_settings.nix
     ./kakoune
   ];
-  
+
   home.packages = with pkgs; [
     bat
     fd
@@ -44,7 +44,7 @@ in
       };
       delta = {
         enable = true;
-	options = {navigate = true; light = false;};
+        options = { navigate = true; light = false; };
       };
       extraConfig = {
         user.email = "blakat360@gmail.com";
@@ -60,11 +60,11 @@ in
         mv = "mv -i";
       };
       functions = {
-	fish_user_key_bindings = ''
-	  bind --mode default ' ' execute
-	'';
+        fish_user_key_bindings = ''
+          	  bind --mode default ' ' execute
+          	'';
       };
-      plugins = with generated; [ 
+      plugins = with generated; [
         { name = getopts.pname; src = getopts.src; }
         { name = "grc"; src = pkgs.fishPlugins.grc.src; }
         { name = "bass"; src = pkgs.fishPlugins.bass.src; }
@@ -72,6 +72,10 @@ in
       ];
     };
     zoxide.enable = true;
+    tmux = {
+      enable = true;
+      clock24 = true;
+    };
   };
 
   services.gpg-agent = {
