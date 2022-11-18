@@ -44,12 +44,11 @@
   # Configure keymap in X11
   services.xserver = {
       enable = true;
-      layout = "gb";
-      xkbOptions = "ctrl:swapcaps";
+      layout = "us";
   };
 
   # keymap in tty
-  console.keyMap = "uk";
+  console.keyMap = "us";
 
   # Enable CUPS to print documents.
   services.printing.enable = true;

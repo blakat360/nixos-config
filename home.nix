@@ -16,7 +16,6 @@
     chromium
     firefox
     steam
-    xcape
     zoom-us
   ];
 
@@ -34,5 +33,4 @@
   # Let Home Manager install and manage itself.
   programs.home-manager.enable = true;
 
-  services.xcape.enable = true;
 }
