@@ -70,6 +70,9 @@ in
         { name = "bass"; src = pkgs.fishPlugins.bass.src; }
         { name = "fzf-fish"; src = pkgs.fishPlugins.fzf-fish.src; }
       ];
+      interactiveShellInit = ''
+        fish_vi_key_bindings
+      '';
     };
     zoxide.enable = true;
     tmux = {
@@ -84,3 +87,4 @@ in
     enableSshSupport = true;
   };
 }
+
