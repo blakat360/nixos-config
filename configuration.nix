@@ -46,10 +46,6 @@
     enable = true;
     layout = "gb";
     xkbOptions = "caps:swapescape";
-#    screenSection = ''
-#      	option "DPI" "344 x 193"
-#    '';
-#    dpi = 142;
     libinput = {
       enable = true;
       touchpad = {

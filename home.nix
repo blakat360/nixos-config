@@ -1,7 +1,9 @@
+#TODO: find a way to grab the exec command from the active window manager
+#      perhaps define a 'name' attr or smthng to grab
 { config, pkgs, ... }:
 
 {
-  imports = [ 
+  imports = [
     ./discord.nix
     ./terminal.nix
   ];
@@ -11,12 +13,17 @@
   home.homeDirectory = "/home/sigkill";
 
   home.sessionVariables = {
-    GDK_SCALE=2;
-    GDK_DPI_SCALE=0.75;
-    QT_AUTO_SCREEN_SCALE_FACTOR=1;
+    GDK_SCALE = 1;
+    GDK_DPI_SCALE = 0.75;
+    QT_AUTO_SCREEN_SCALE_FACTOR = 1;
+    QT_AUTO_SCREEN_SET_FACTOR=0;
   };
-  
-  # Packages that should be installed to the user profile.
+
+  home.file.".xinitrc".text = ''
+  	exec i3
+  '';
+
+# Packages that should be installed to the user profile.
   home.packages = with pkgs; [
     anki
     chromium
