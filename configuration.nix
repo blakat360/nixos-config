@@ -43,13 +43,20 @@
 
   # Configure keymap in X11
   services.xserver = {
+    enable = true;
+    layout = "gb";
+    xkbOptions = "caps:swapescape";
+#    screenSection = ''
+#      	option "DPI" "344 x 193"
+#    '';
+#    dpi = 142;
+    libinput = {
       enable = true;
-      layout = "gb";
-      xkbOptions = "caps:swapescape";
-      screenSection = ''
-      	option "DPI" "344 x 193"
-      '';
-      dpi = 142;
+      touchpad = {
+        tapping = true;
+        naturalScrolling = true;
+      };
+    };
   };
 
   # keymap in tty
@@ -73,14 +80,6 @@
     # use the example session manager (no others are packaged yet so this is enabled by default,
     # no need to redefine it in your config for now)
     #media-session.enable = true;
-  };
-
-  services.xserver.libinput = {
-    enable = true;
-    touchpad =  {
-      tapping = true;
-      naturalScrolling = true;
-    };
   };
 
   # Define a user account. Don't forget to set a password with ‘passwd’.

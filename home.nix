@@ -9,6 +9,12 @@
   # paths it should manage.
   home.username = "sigkill";
   home.homeDirectory = "/home/sigkill";
+
+  home.sessionVariables = {
+    GDK_SCALE=2;
+    GDK_DPI_SCALE=0.75;
+    QT_AUTO_SCREEN_SCALE_FACTOR=1;
+  };
   
   # Packages that should be installed to the user profile.
   home.packages = with pkgs; [
