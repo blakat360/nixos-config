@@ -14,6 +14,7 @@
       sigkill = nixpkgs.lib.nixosSystem {
         system = "x86_64-linux";
         modules = [
+          ./nvidia.nix
           ./configuration.nix
       	  ./hardware-configuration.nix
       	  ./laptop.nix

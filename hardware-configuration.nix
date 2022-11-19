@@ -14,8 +14,6 @@
   boot.kernelModules = [ "kvm-amd" ];
   boot.extraModulePackages = [ ];
 
-  services.xserver.videoDrivers = [ "nvidia" ];
-  hardware.opengl.enable = true;
 
   fileSystems."/" =
     { device = "/dev/disk/by-uuid/02e99672-9a75-42d3-b7fb-177efd48e29b";

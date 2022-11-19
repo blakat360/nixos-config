@@ -7,7 +7,7 @@
 {
   imports =
     [
-      ./wm/gnome.nix
+      ./wm/i3.nix
     ];
 
   nix = {
@@ -45,7 +45,11 @@
   services.xserver = {
       enable = true;
       layout = "gb";
-      xkbOptions = "ctrl:swapcaps";
+      xkbOptions = "caps:swapescape";
+      screenSection = ''
+      	option "DPI" "344 x 193"
+      '';
+      dpi = 142;
   };
 
   # keymap in tty
