@@ -28,6 +28,7 @@
     anki
     chromium
     firefox
+    pamixer
     steam
     xcape
     zoom-us
