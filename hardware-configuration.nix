@@ -39,4 +39,6 @@
   # hardware.enableRedistributableFirmware = true;
   # hardware.enableAllFirmware = true;
   hardware.firmware = with pkgs; [ wireless-regdb ];
+
+  services.xserver.dpi = 161;
 }
