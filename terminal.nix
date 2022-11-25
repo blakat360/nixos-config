@@ -57,6 +57,7 @@ in
     fish = {
       enable = true;
       shellAliases = {
+        bm = "bashmount";
         mv = "mv -i";
       };
       functions = {
