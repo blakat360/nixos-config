@@ -4,7 +4,7 @@
 
 {
   imports = [
-    ./wm/i3-home.nix
+    ./wm/i3.nix
     ./discord.nix
     ./terminal.nix
   ];
@@ -19,10 +19,6 @@
     QT_AUTO_SCREEN_SCALE_FACTOR = 1;
     QT_AUTO_SCREEN_SET_FACTOR=0;
   };
-
-  home.file.".xinitrc".text = ''
-  	exec i3
-  '';
 
 # Packages that should be installed to the user profile.
   home.packages = with pkgs; [
