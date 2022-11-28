@@ -30,7 +30,6 @@
     libqalculate
     pamixer
     steam
-    xcape
     zoom-us
   ];
 
@@ -53,6 +52,4 @@
       theme = "solarized";
     };
   };
-
-  services.xcape.enable = true;
 }
