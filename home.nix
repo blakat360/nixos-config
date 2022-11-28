@@ -4,6 +4,7 @@
 
 {
   imports = [
+    ./wm/i3-home.nix
     ./discord.nix
     ./terminal.nix
   ];
@@ -30,6 +31,7 @@
     brightnessctl
     chromium
     firefox
+    libqalculate
     pamixer
     steam
     xcape
@@ -48,7 +50,13 @@
 
 
   # Let Home Manager install and manage itself.
-  programs.home-manager.enable = true;
+  programs = {
+    home-manager.enable = true;
+    rofi = {
+      enable = true;
+      theme = "solarized";
+    };
+  };
 
   services.xcape.enable = true;
 }

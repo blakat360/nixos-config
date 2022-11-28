@@ -7,7 +7,8 @@
 {
   imports =
     [
-      ./wm/i3.nix
+      ./wm/dummy-x-session.nix
+#      ./wm/i3.nix
     ];
 
   nix = {
