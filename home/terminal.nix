@@ -1,7 +1,8 @@
-{ config, pkgs, ... }:
+{ config, pkgs, nix-colors, ... }:
 
 let
   generated = import ./_sources/generated.nix { inherit (pkgs) fetchurl fetchgit fetchFromGitHub; };
+  nix-colors-lib = nix-colors.lib-contrib { inherit pkgs; };
 in
 {
   imports = [
@@ -14,7 +15,6 @@ in
     bat
     fd
     file
-    fish
     fzf
     git
     nerdfonts
@@ -74,6 +74,7 @@ in
       ];
       interactiveShellInit = ''
         fish_vi_key_bindings
+        sh ${nix-colors-lib.shellThemeFromScheme { scheme = config.colorScheme; }}
       '';
     };
     zoxide.enable = true;
