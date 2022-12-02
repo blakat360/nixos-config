@@ -1,13 +1,17 @@
 #TODO: find a way to grab the exec command from the active window manager
 #      perhaps define a 'name' attr or smthng to grab
-{ config, pkgs, ... }:
+{ config, pkgs, nix-colors, ... }:
 
 {
   imports = [
     ./wm/i3.nix
     ./discord.nix
     ./terminal.nix
+    nix-colors.homeManagerModule
   ];
+
+  colorScheme = nix-colors.colorSchemes.solarized-dark;
+
   # Home Manager needs a bit of information about you and the
   # paths it should manage.
   home.username = "sigkill";

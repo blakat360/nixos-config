@@ -1,11 +1,30 @@
 { config, pkgs, ... }:
 
+let
+	python_pkgs = with pkgs.python310Packages; [
+  	python-lsp-server
+  	rope
+  	pyflakes
+  	yapf
+	];
+	cpp_pkgs = with pkgs; [
+  	bear
+		clang
+		clang-tools
+		cling
+		cmake
+    cmake-language-server
+		gdb
+		ninja
+		valgrind
+	];
+in
 {
   home.packages = with pkgs; [
     rnix-lsp
     rust-analyzer
-    python310Packages.python-lsp-server
-  ];
+  ] ++ python_pkgs
+  	++ cpp_pkgs;
 
   programs.kakoune = {
     plugins = with pkgs.kakounePlugins; [ kak-lsp ];
@@ -45,6 +64,18 @@
       filetypes = ["nix"]
       roots = ["flake.nix", "shell.nix", ".git"]
       command = "rnix-lsp"
+
+      [language.c_cpp]
+      filetypes = ["c", "cpp"]
+      roots = ["compile_commands.json", ".git"]
+      command = "clangd"
+      # Disable additional information in autocompletion menus that Kakoune inserts into the buffer until https://github.com/ul/kak-lsp/issues/40 gets fixed
+      # args = ["--init={\"completion\":{\"detailedLabel\":false}}"]
+
+      [language.cmake]
+      filetypes = ["cmake"]
+      roots = [".git", "compile_commands.json"]
+      command = "cmake-language-server"
     '';
   };
 }

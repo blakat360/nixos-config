@@ -7,6 +7,7 @@ in
   imports = [
     ./starship_settings.nix
     ./kakoune
+    ./st
   ];
 
   home.packages = with pkgs; [
@@ -16,9 +17,9 @@ in
     fish
     fzf
     git
+    nerdfonts
     python3 # needed for bass fish plugin
     ripgrep
-    st
     starship
     tldr
     tree
