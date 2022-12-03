@@ -24,6 +24,10 @@
     QT_AUTO_SCREEN_SET_FACTOR=0;
   };
 
+  gtk.theme.package = nix-colors.lib-contrib.gtkThemeFromScheme {
+    scheme = config.colorScheme;
+  };
+
 # Packages that should be installed to the user profile.
   home.packages = with pkgs; [
     anki
