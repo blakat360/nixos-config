@@ -7,7 +7,7 @@
     config = rec {
       terminal = "st";
       modifier = "Mod4";
-      menu = "rofi -show run";
+      menu = "rofi -show drun";
       defaultWorkspace = "workspace number 1";
       keybindings = lib.mkOptionDefault {
         "${modifier}+h" = "focus left";
