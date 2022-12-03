@@ -23,6 +23,9 @@
         "${modifier}+|" = "split v";
         "${modifier}+-" = "split h";
 
+				# power menu - locking works with loginctl
+        "${modifier}+Escape" = "exec rofi -show power-menu -modi power-menu:rofi-power-menu";
+
         "XF86AudioRaiseVolume" = "exec --no-startup-id pamixer --increase 10";
         "XF86AudioLowerVolume" = "exec --no-startup-id pamixer --decrease 10";
         "XF86AudioMute" = "exec --no-startup-id pamixer --toggle-mute";
