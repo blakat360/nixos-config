@@ -1,33 +1,32 @@
 { config, pkgs, nix-colors, ... }:
 let
-	colors = config.colorScheme.colors;
-	color_file = ''
+	color_file = with config.colorScheme.colors; ''
 		/* Terminal colors (16 first used in escape sequence) */
     static const char *colorname[] = {
 
       /* 8 normal colors */
-      [0] = "#${colors.base00}",
-      [1] = "#${colors.base01}",
-      [2] = "#${colors.base02}",
-      [3] = "#${colors.base03}",
-      [4] = "#${colors.base04}",
-      [5] = "#${colors.base05}",
-      [6] = "#${colors.base06}",
-      [7] = "#${colors.base07}",
+      [0] = "#${base00}",
+      [1] = "#${base01}",
+      [2] = "#${base02}",
+      [3] = "#${base03}",
+      [4] = "#${base04}",
+      [5] = "#${base05}",
+      [6] = "#${base06}",
+      [7] = "#${base07}",
 
       /* 8 bright colors */
-      [8]  = "#${colors.base08}",
-      [9]  = "#${colors.base09}",
-      [10] = "#${colors.base0A}",
-      [11] = "#${colors.base0B}",
-      [12] = "#${colors.base0C}",
-      [13] = "#${colors.base0D}",
-      [14] = "#${colors.base0E}",
-      [15] = "#${colors.base0F}",
+      [8]  = "#${base08}",
+      [9]  = "#${base09}",
+      [10] = "#${base0A}",
+      [11] = "#${base0B}",
+      [12] = "#${base0C}",
+      [13] = "#${base0D}",
+      [14] = "#${base0E}",
+      [15] = "#${base0F}",
 
       /* special colors */
-      [256] = "#${colors.base00}", /* background */
-      [257] = "#${colors.base05}", /* foreground */
+      [256] = "#${base00}", /* background */
+      [257] = "#${base05}", /* foreground */
     };
 
     /*

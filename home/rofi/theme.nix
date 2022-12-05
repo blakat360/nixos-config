@@ -1,27 +1,26 @@
 { config, pkgs, nix-colors, ... }:
 let
-	colors = config.colorScheme.colors;
-	theme = ''
+	theme = with config.colorScheme.colors; ''
     * {
-        selected-normal-foreground:  #${colors.base04};
+        selected-normal-foreground:  #${base04};
         foreground:                  @selected-normal-foreground;
         normal-foreground:           @foreground;
-        alternate-normal-background: #${colors.base00};
-        red:                         #${colors.base08};
+        alternate-normal-background: #${base00};
+        red:                         #${base08};
         selected-urgent-foreground:  @red;
-        blue:                        #${colors.base0D};
+        blue:                        #${base0D};
         urgent-foreground:           @selected-urgent-foreground;
         alternate-urgent-background: @alternate-normal-background;
         active-foreground:           @blue;
-        lightbg:                     #${colors.base06};
+        lightbg:                     #${base06};
         selected-active-foreground:  @blue;
         alternate-active-background: @alternate-normal-background;
         background:                  @alternate-normal-background;
         bordercolor:                 @alternate-normal-background;
         alternate-normal-foreground: @foreground;
         normal-background:           @alternate-normal-background;
-        lightfg:                     #${colors.base02};
-        selected-normal-background:  #${colors.base01};
+        lightfg:                     #${base02};
+        selected-normal-background:  #${base01};
         border-color:                @foreground;
         spacing:                     2;
         separatorcolor:              @selected-normal-background;

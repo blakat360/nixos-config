@@ -5,6 +5,7 @@
   imports = [
     ./fuzzy-finder.nix
     ./lsp.nix
+    ./theme.nix
   ];
 
   home.sessionVariables = {
@@ -17,7 +18,6 @@
       showMatching = true;
       tabStop = 2;
       indentWidth = 2;
-      colorScheme = "solarized-dark";
       ui.assistant = "cat";
     };
   };
