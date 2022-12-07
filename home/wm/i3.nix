@@ -1,4 +1,4 @@
-{ config, pkgs, lib, ... }:
+{ config, pkgs, lib, nix-colors, ... }:
 
 {
   xsession.enable = true;
@@ -32,6 +32,14 @@
 
         "XF86MonBrightnessUp" = "exec --no-startup-id brightnessctl set +10%";
         "XF86MonBrightnessDown" = "exec --no-startup-id brightnessctl set 10%-";
+      };
+      colors = with config.colorScheme.colors; rec {
+        unfocused         = {border = "#${base01}"; background = "#${base00}"; text = "#${base05}"; indicator = "#${base01}"; childBorder = "#${base01}";};
+        focusedInactive   = {border = "#${base01}"; background = "#${base01}"; text = "#${base05}"; indicator = "#${base01}"; childBorder = "#${base01}";};
+        focused           = {border = "#${base01}"; background = "#${base01}"; text = "#${base0D}"; indicator = "#${base01}"; childBorder = "#${base01}";};
+        urgent            = {border = "#${base08}"; background = "#${base00}"; text = "#${base05}"; indicator = "#${base08}"; childBorder = "#${base08}";};
+        placeholder       = {border = "#${base00}"; background = "#${base00}"; text = "#${base05}"; indicator = "#${base00}"; childBorder = "#${base00}";};
+        background        = "#${base00}";
       };
     };
   };
