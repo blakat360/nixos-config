@@ -38,7 +38,9 @@
     firefox
     libqalculate
     pamixer
+    rofi-bluetooth
     steam
+    vhs
     zoom-us
   ];
 
