@@ -13,6 +13,7 @@ in
 
   home.packages = with pkgs; [
     bat
+    direnv
     fd
     file
     fzf
@@ -54,6 +55,10 @@ in
         diff.colorMoved = "default";
         init.defaultBranch = "master";
       };
+    };
+    direnv = {
+      enable = true;
+      nix-direnv.enable = true;
     };
     fish = {
       enable = true;

@@ -39,6 +39,10 @@
   # hardware.enableRedistributableFirmware = true;
   # hardware.enableAllFirmware = true;
   hardware.firmware = with pkgs; [ wireless-regdb ];
+  hardware.trackpoint = {
+    enable = true;
+    sensitivity = 45;
+  };
 
   services.xserver.dpi = 161;
 }
