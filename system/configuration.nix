@@ -8,7 +8,6 @@
   imports =
     [
       ./wm/dummy-x-session.nix
-#      ./wm/i3.nix
     ];
 
   nix = {
@@ -32,7 +31,7 @@
     };
   };
 
-  networking.hostName = "nixos"; # Define your hostname.
+	networking.hostName = "thinkpad";
   # networking.wireless.enable = true;  # Enables wireless support via wpa_supplicant.
 
   # Configure network proxy if necessary
