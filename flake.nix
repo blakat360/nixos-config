@@ -14,15 +14,20 @@
     inputs@{ nixpkgs, home-manager, nix-colors, ... }: {
       nixosConfigurations =
         let
-          systems = [ "thinkpad" "legion" ];
+          systems = [ "thinkpad" "legion-nvidia" ];
+          lib = nixpkgs.lib;
+          extra_modules = system_name:
+            let
+              tags = lib.filter lib.isString (lib.strings.split "-" system_name);
+            in
+            map (tag: ./hardware + "/${tag}.nix") tags;
           mksystem = system_name:
             {
-              "${system_name}" = nixpkgs.lib.nixosSystem {
+              "${system_name}" = lib.nixosSystem {
                 specialArgs = { inherit nix-colors; };
                 system = "x86_64-linux";
                 modules = [
                   ({ config, ... }: { networking.hostName = system_name; })
-                  (./hardware + "/${system_name}.nix")
                   ./system/configuration.nix
                   ./system/laptop.nix
                   home-manager.nixosModules.home-manager
@@ -32,10 +37,10 @@
                     home-manager.users.sigkill = import ./home;
                     home-manager.extraSpecialArgs = { inherit nix-colors; };
                   }
-                ];
+                ] ++ (extra_modules system_name);
               };
             };
         in
-        nixpkgs.lib.foldl nixpkgs.lib.mergeAttrs {} (map mksystem systems);
+        lib.foldl lib.mergeAttrs { } (map mksystem systems);
     };
 }
