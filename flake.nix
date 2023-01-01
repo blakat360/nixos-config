@@ -14,7 +14,7 @@
     inputs@{ nixpkgs, home-manager, nix-colors, ... }: {
       nixosConfigurations =
         let
-          systems = [ "thinkpad" "legion-nvidia" ];
+          systems = [ "thinkpad" "legion-nvidia" "iso" ];
           lib = nixpkgs.lib;
           extra_modules = system_name:
             let
