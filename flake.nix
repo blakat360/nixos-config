@@ -11,7 +11,7 @@
   };
 
   outputs =
-    inputs@{ nixpkgs, home-manager, nix-colors, ... }: {
+    inputs@{ nixpkgs, home-manager, nix-colors, ... }: rec {
       nixosConfigurations =
         let
           systems = [ "thinkpad" "legion-nvidia" "iso" ];
@@ -42,5 +42,6 @@
             };
         in
         lib.foldl lib.mergeAttrs { } (map mksystem systems);
+        packages."x86_64-linux".default = nixosConfigurations.iso.config.system.build.isoImage;
     };
 }

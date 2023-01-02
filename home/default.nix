@@ -59,4 +59,10 @@
   programs = {
     home-manager.enable = true;
   };
+  services = {
+    betterlockscreen.enable = true;
+    screen-locker = {
+      enable = true;
+    };
+  };
 }
