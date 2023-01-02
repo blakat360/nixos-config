@@ -50,24 +50,26 @@
   i18n.defaultLocale = "en_GB.utf8";
 
   # Configure keymap in X11
-  services.xserver = {
-    enable = true;
-    layout = "gb";
-    xkbOptions = "caps:swapescape";
-    libinput = {
+  services = {
+    xserver = {
       enable = true;
-      touchpad = {
-        tapping = true;
-        naturalScrolling = true;
+      layout = "gb";
+      xkbOptions = "caps:swapescape";
+      libinput = {
+        enable = true;
+        touchpad = {
+          tapping = true;
+          naturalScrolling = true;
+        };
       };
     };
+    printing.enable = true;
+    udisks2.enable = true;
+    fstrim.enable = true;
   };
 
   # keymap in tty
   console.keyMap = "uk";
-
-  # Enable CUPS to print documents.
-  services.printing.enable = true;
 
   # Enable sound with pipewire.
   sound.enable = true;
@@ -92,8 +94,6 @@
     description = "sigkill";
     shell = pkgs.fish;
     extraGroups = [ "networkmanager" "wheel" ];
-    packages = with pkgs; [
-    ];
   };
 
   # Allow unfree packages
@@ -108,10 +108,6 @@
   ];
 
   programs.steam.enable = true;
-  services = {
-    udisks2.enable = true;
-    fstrim.enable = true;
-  };
   hardware.bluetooth.enable = true;
 
   # Some programs need SUID wrappers, can be configured further or are

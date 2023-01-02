@@ -9,12 +9,8 @@
   	# find files using skim
 
     define-command fzf-files \
-    -docstring 'Select files in project using ag + fzf' %{nop %sh{
-      if [ -z "''${kak_client_env_TMUX}" ]; then
-        printf 'fail "client was not started under tmux"\n'
-      fi
-
-      FILE=$(ag -g "" | fzf-tmux)
+    -docstring 'Select files in project using ag + rofi' %{nop %sh{
+      FILE=$(ag -g "" | rofi -dmenu)
       if [ -n "$FILE" ]; then
         printf 'eval -client %%{%s} edit %%{%s}\n' "''${kak_client}" "''${FILE}" | kak -p "''${kak_session}"
       fi
@@ -23,12 +19,8 @@
   	# go to open buffer using rofi
   	
     define-command fzf-buffers \
-    -docstring 'Select an open buffer using skim' %{ evaluate-commands %sh{
-      if [ -z "''${kak_client_env_TMUX}" ]; then
-        printf 'fail "client was not started under tmux"\n'
-      fi
-
-      BUFFER=$(printf "%s\n" "''${kak_buflist}" | tr " " "\n" | fzf-tmux | tr -d \')
+    -docstring 'Select an open buffer using rofi' %{ evaluate-commands %sh{
+      BUFFER=$(printf "%s\n" "''${kak_buflist}" | tr " " "\n" | rofi -dmenu | tr -d \')
       if [ -n "$BUFFER" ]; then
         printf "%s\n" "buffer ''${BUFFER}"
       fi

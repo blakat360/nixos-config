@@ -15,21 +15,23 @@
 
   # Home Manager needs a bit of information about you and the
   # paths it should manage.
-  home.username = "sigkill";
-  home.homeDirectory = "/home/sigkill";
+  home = {
+    username = "sigkill";
+    homeDirectory = "/home/sigkill";
 
-  home.sessionVariables = {
-    GDK_SCALE = 1;
-    GDK_DPI_SCALE = 0.75;
-    QT_AUTO_SCREEN_SCALE_FACTOR = 1;
-    QT_AUTO_SCREEN_SET_FACTOR=0;
+    sessionVariables = {
+      GDK_SCALE = 1;
+      GDK_DPI_SCALE = 0.75;
+      QT_AUTO_SCREEN_SCALE_FACTOR = 1;
+      QT_AUTO_SCREEN_SET_FACTOR = 0;
+    };
   };
 
   gtk.theme.package = nix-colors.lib-contrib.gtkThemeFromScheme {
     scheme = config.colorScheme;
   };
 
-# Packages that should be installed to the user profile.
+  # Packages that should be installed to the user profile.
   home.packages = with pkgs; [
     anki
     bashmount
@@ -59,6 +61,7 @@
   programs = {
     home-manager.enable = true;
   };
+
   services = {
     betterlockscreen.enable = true;
     screen-locker = {
