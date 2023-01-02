@@ -20,17 +20,19 @@
   };
 
   # Bootloader.
-  boot.loader = {
-    systemd-boot = {
-      enable = true;
-      configurationLimit = 5;
+  boot = {
+    loader = {
+      systemd-boot = {
+        enable = true;
+        configurationLimit = 5;
+      };
+      efi = {
+        canTouchEfiVariables = true;
+        efiSysMountPoint = "/boot/efi";
+      };
     };
-    efi = {
-      canTouchEfiVariables = true;
-      efiSysMountPoint = "/boot/efi";
-    };
+    kernelPackages = pkgs.linuxPackages_latest;
   };
-  kernelPackages = pkgs.linuxPackages_latest;
 
 
   networking.wireless.enable = false; # Enables wireless support via wpa_supplicant.
