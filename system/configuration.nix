@@ -30,8 +30,10 @@
       efiSysMountPoint = "/boot/efi";
     };
   };
+  kernelPackages = pkgs.linuxPackages_latest;
 
-  networking.wireless.enable = false;  # Enables wireless support via wpa_supplicant.
+
+  networking.wireless.enable = false; # Enables wireless support via wpa_supplicant.
 
   # Configure network proxy if necessary
   # networking.proxy.default = "http://user:password@proxy:port/";
@@ -104,7 +106,10 @@
   ];
 
   programs.steam.enable = true;
-  services.udisks2.enable = true;
+  services = {
+    udisks2.enable = true;
+    fstrim.enable = true;
+  };
   hardware.bluetooth.enable = true;
 
   # Some programs need SUID wrappers, can be configured further or are
