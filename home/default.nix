@@ -8,6 +8,7 @@
     ./discord.nix
     ./terminal.nix
     ./rofi
+    ./st.nix
     nix-colors.homeManagerModule
   ];
 
@@ -43,6 +44,7 @@
     rofi-bluetooth
     steam
     vhs
+    xsel
     zoom-us
   ];
 

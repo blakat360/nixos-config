@@ -8,7 +8,6 @@ in
   imports = [
     ./starship_settings.nix
     ./kakoune
-    ./st
   ];
 
   home.packages = with pkgs; [
@@ -26,7 +25,6 @@ in
     tree
     unzip
     wget
-    xsel
   ];
 
   programs = {
