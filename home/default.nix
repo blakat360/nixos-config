@@ -8,7 +8,7 @@
     ./discord.nix
     ./terminal.nix
     ./rofi
-    ./st.nix
+    ./st
     nix-colors.homeManagerModule
   ];
 
