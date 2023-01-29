@@ -1,31 +1,22 @@
 #TODO: find a way to grab the exec command from the active window manager
 #      perhaps define a 'name' attr or smthng to grab
-{ config, pkgs, nix-colors, ... }:
+{ config, pkgs, nix-colors, user ? "sigkill", ... }:
 
 {
   imports = [
-    ./wm/i3.nix
     ./discord.nix
     ./terminal.nix
-    ./rofi
-    ./st
     nix-colors.homeManagerModule
-  ];
+  ] ++ (if user == "sigkill" then [ ./personal-machine.nix ] else [ ]);
 
   colorScheme = nix-colors.colorSchemes.solarized-dark;
 
   # Home Manager needs a bit of information about you and the
   # paths it should manage.
   home = {
-    username = "sigkill";
-    homeDirectory = "/home/sigkill";
+    username = "${user}";
+    homeDirectory = "/home/${user}";
 
-    sessionVariables = {
-      GDK_SCALE = 1;
-      GDK_DPI_SCALE = 0.75;
-      QT_AUTO_SCREEN_SCALE_FACTOR = 1;
-      QT_AUTO_SCREEN_SET_FACTOR = 0;
-    };
   };
 
   gtk.theme.package = nix-colors.lib-contrib.gtkThemeFromScheme {
@@ -34,17 +25,8 @@
 
   # Packages that should be installed to the user profile.
   home.packages = with pkgs; [
-    anki
-    bashmount
-    brightnessctl
     chromium
     firefox
-    libqalculate
-    pamixer
-    rofi-bluetooth
-    steam
-    vhs
-    xsel
     zoom-us
   ];
 
@@ -58,20 +40,8 @@
   # changes in each release.
   home.stateVersion = "22.05";
 
-
   # Let Home Manager install and manage itself.
   programs = {
     home-manager.enable = true;
-  };
-
-  services = {
-    betterlockscreen = {
-      enable = true;
-      arguments = ["--color ${config.colorScheme.colors.base00}"];
-    };
-    screen-locker = {
-      enable = true;
-      xautolock.enable = false;
-    };
   };
 }
