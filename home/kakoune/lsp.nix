@@ -1,30 +1,23 @@
 { config, pkgs, ... }:
 
 let
-	python_pkgs = with pkgs.python310Packages; [
-  	python-lsp-server
-  	rope
-  	pyflakes
-  	yapf
-	];
-	cpp_pkgs = with pkgs; [
-  	bear
-		clang
-		clang-tools
-		cling
-		cmake
+  cpp_pkgs = with pkgs; [
+    bear
+    clang
+    clang-tools
+    cling
+    cmake
     cmake-language-server
-		gdb
-		ninja
-		valgrind
-	];
+    gdb
+    ninja
+    valgrind
+  ];
 in
 {
   home.packages = with pkgs; [
     rnix-lsp
     rust-analyzer
-  ] ++ python_pkgs
-  	++ cpp_pkgs;
+  ] ++ cpp_pkgs;
 
   programs.kakoune = {
     plugins = with pkgs.kakounePlugins; [ kak-lsp ];
@@ -46,7 +39,7 @@ in
       map global object D '<a-semicolon>lsp-diagnostic-object<ret>' -docstring 'LSP errors'
     '';
   };
-  
+
   xdg.configFile = {
     "kak-lsp/kak-lsp.toml".text = ''
       [language.rust]
@@ -56,7 +49,7 @@ in
 
       [language.python]
       filetypes = ["python"]
-      roots = ["requirements.txt", "setup.py", ".git", ".hg"]
+      roots = ["requirements.txt", "setup.py", ".git", "pyproject.toml"]
       command = "pylsp"
       offset_encoding = "utf-8"
 

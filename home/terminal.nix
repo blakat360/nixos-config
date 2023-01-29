@@ -18,7 +18,8 @@ in
     fzf
     git
     nerdfonts
-    python3 # needed for bass fish plugin
+    # lsp support and bass fish plugin
+    (python3.withPackages (p: with p; [ python-lsp-server ]))
     ripgrep
     starship
     tldr

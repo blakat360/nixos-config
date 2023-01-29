@@ -67,6 +67,7 @@
     udisks2.enable = true;
     fstrim.enable = true;
   };
+  virtualisation.docker.enable = true;
 
   # keymap in tty
   console.keyMap = "uk";
@@ -96,7 +97,7 @@
     isNormalUser = true;
     description = "sigkill";
     shell = pkgs.fish;
-    extraGroups = [ "networkmanager" "wheel" ];
+    extraGroups = [ "networkmanager" "wheel" "docker" ];
   };
 
   # Allow unfree packages
