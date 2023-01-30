@@ -1,4 +1,4 @@
-{ config, pkgs, nix-colors, ... }:
+{ config, pkgs, nix-colors, email,  ... }:
 
 let
   generated = import ./_sources/generated.nix { inherit (pkgs) fetchurl fetchgit fetchFromGitHub; };
@@ -48,7 +48,7 @@ in
         options = { navigate = true; light = false; };
       };
       extraConfig = {
-        user.email = "blakat360@gmail.com";
+        user.email = "${email}";
         add.interactive.useBuiltin = false;
         merge.conflictstyle = "diff3";
         diff.colorMoved = "default";
