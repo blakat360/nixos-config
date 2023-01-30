@@ -16,6 +16,12 @@
     let
       user = "sigkill";
       email = "blakat360@gmail.com";
+      standalone-home = pkgs:
+        home-manager.lib.homeManagerConfiguration {
+          inherit pkgs;
+          modules = [ ./home ];
+          extraSpecialArgs = { inherit nix-colors user email; };
+        };
     in
     rec {
       nixosConfigurations =
@@ -44,6 +50,8 @@
             };
         in
         mksystem "thinkpad";
+        homeConfigurations.mac = standalone-home nixpkgs.legacyPackages."aarch64-darwin";
+        homeConfigurations.linux = standalone-home nixpkgs.legacyPackages."x86_64-linux";
     };
 }
 
