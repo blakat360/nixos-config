@@ -1,6 +1,6 @@
 #TODO: find a way to grab the exec command from the active window manager
 #      perhaps define a 'name' attr or smthng to grab
-{ config, pkgs, nix-colors, user ? "sigkill", ... }:
+{ config, pkgs, nix-colors, user, ... }:
 
 {
   imports = [
