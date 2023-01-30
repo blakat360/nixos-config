@@ -14,9 +14,9 @@
   outputs =
     inputs@{ nixpkgs, home-manager, nix-colors, flake-utils, ... }:
     let
-      user = "sigkill";
-      email = "blakat360@gmail.com";
-      pkgs = nixpkgs.legacyPackages."x86_64-linux";
+      user = "edward.gokmen";
+      email = "edward.gokmen@helsing.ai";
+      pkgs = nixpkgs.legacyPackages."aarch64-darwin";
     in
     rec {
       homeConfigurations."${user}" = home-manager.lib.homeManagerConfiguration
