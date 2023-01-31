@@ -37,5 +37,10 @@
       enable = true;
       xautolock.enable = false;
     };
+    gpg-agent = {
+      enable = true;
+      defaultCacheTtl = 1800;
+      enableSshSupport = true;
+    };
   };
 }
