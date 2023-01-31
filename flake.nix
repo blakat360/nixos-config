@@ -16,8 +16,16 @@
     let
       user = "sigkill";
       email = "blakat360@gmail.com";
+      pkgs = nixpkgs.legacyPackages."x86_64-linux";
     in
     rec {
+      homeConfigurations."${user}" = home-manager.lib.homeManagerConfiguration
+        {
+          inherit pkgs;
+          modules = [ ./home ];
+          extraSpecialArgs = { inherit nix-colors user email; };
+        };
+
       nixosConfigurations =
         let
           lib = nixpkgs.lib;
@@ -43,18 +51,6 @@
             };
         in
         mksystem "thinkpad";
-    } // flake-utils.lib.eachDefaultSystem (system:
-    let pkgs = nixpkgs.legacyPackages.${system}; in
-    {
-      packages = flake-utils.lib.flattenTree
-        {
-          homeConfigurations."${user}" = home-manager.lib.homeManagerConfiguration
-            {
-              inherit pkgs;
-              modules = [ ./home ];
-              extraSpecialArgs = { inherit nix-colors user email; };
-            };
-        };
-    });
+    };
 }
 
