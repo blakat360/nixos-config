@@ -1,6 +1,6 @@
 #TODO: find a way to grab the exec command from the active window manager
 #      perhaps define a 'name' attr or smthng to grab
-{ config, pkgs, nix-colors, user, ... }:
+{ config, pkgs, nix-colors, user, isLinux, ... }:
 
 {
   imports = [
@@ -14,7 +14,7 @@
   # paths it should manage.
   home = {
     username = "${user}";
-    homeDirectory = if pkgs.lib.hasInfix "linux" pkgs.system then "/home/${user}" else "/Users/${user}";
+    homeDirectory = if isLinux then "/home/${user}" else "/Users/${user}";
   };
 
   gtk.theme.package = nix-colors.lib-contrib.gtkThemeFromScheme {

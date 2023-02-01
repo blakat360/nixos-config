@@ -17,13 +17,14 @@
       user = "edward.gokmen";
       email = "edward.gokmen@helsing.ai";
       pkgs = nixpkgs.legacyPackages."aarch64-darwin";
+      isLinux = pkgs.lib.hasInfix "linux" pkgs.system;
     in
     rec {
       homeConfigurations."${user}" = home-manager.lib.homeManagerConfiguration
         {
           inherit pkgs;
           modules = [ ./home ];
-          extraSpecialArgs = { inherit nix-colors user email; };
+          extraSpecialArgs = { inherit nix-colors user email isLinux; };
         };
 
       nixosConfigurations =
@@ -44,7 +45,7 @@
                     home-manager.useGlobalPkgs = true;
                     home-manager.useUserPackages = true;
                     home-manager.users.sigkill = import ./home;
-                    home-manager.extraSpecialArgs = { inherit nix-colors user email; };
+                    home-manager.extraSpecialArgs = { inherit nix-colors user email isLinux; };
                   }
                 ];
               };

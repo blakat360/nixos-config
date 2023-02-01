@@ -1,10 +1,9 @@
-{ config, pkgs, nix-colors, email, ... }:
+{ config, pkgs, nix-colors, email, isLinux, ... }:
 
 let
   generated = import ./_sources/generated.nix { inherit (pkgs) fetchurl fetchgit fetchFromGitHub; };
   nix-colors-lib = nix-colors.lib-contrib { inherit pkgs; };
-  isLinux = pkgs.lib.hasInfix "linux" pkgs.system;
-  OS-specific-imports = if isLinux then [ ] else [ ./alacritty.nix ];
+  OS-specific-imports = if isLinux then [] else [ ./alacritty.nix ];
   OS-specific-services = if isLinux then {
     gpg-agent = { enable = true;
       defaultCacheTtl = 1800;
@@ -16,11 +15,11 @@ in
   imports = [
     ./starship_settings.nix
     ./kakoune
-  ];
-  # ++ OS-specific-imports;
+  ] ++ OS-specific-imports;
 
   home.packages = with pkgs; [
     bat
+    comma
     direnv
     fd
     file

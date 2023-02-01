@@ -1,4 +1,4 @@
-{ config, pkgs, ... }:
+{ config, pkgs, isLinux, ... }:
 
 let
   cpp_pkgs = with pkgs; [
@@ -9,7 +9,7 @@ let
     cmake
     cmake-language-server
     ninja
-  ] ++ (if pkgs.lib.hasInfix "linux" pkgs.system then [ gdb valgrind ] else [ ]);
+  ] ++ (if isLinux then [ gdb valgrind ] else [ ]);
 in
 {
   home.packages = with pkgs; [
