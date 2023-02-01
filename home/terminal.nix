@@ -3,12 +3,21 @@
 let
   generated = import ./_sources/generated.nix { inherit (pkgs) fetchurl fetchgit fetchFromGitHub; };
   nix-colors-lib = nix-colors.lib-contrib { inherit pkgs; };
+  isLinux = pkgs.lib.hasInfix "linux" pkgs.system;
+  OS-specific-imports = if isLinux then [ ] else [ ./alacritty.nix ];
+  OS-specific-services = if isLinux then {
+    gpg-agent = { enable = true;
+      defaultCacheTtl = 1800;
+      enableSshSupport = true;
+    };
+  } else {};
 in
 {
   imports = [
     ./starship_settings.nix
     ./kakoune
   ];
+  # ++ OS-specific-imports;
 
   home.packages = with pkgs; [
     bat
@@ -89,12 +98,6 @@ in
     };
   };
 
-  services = { } // ( if pkgs.lib.hasInfix "linux" pkgs.system then {
-    gpg-agent = {
-      enable = true;
-      defaultCacheTtl = 1800;
-      enableSshSupport = true;
-    };
-  } else {});
+  services = OS-specific-services;
 }
 
