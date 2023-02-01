@@ -2,6 +2,7 @@
 
 {
   imports = [
+    ./discord.nix
     ./wm/i3.nix
     ./rofi
     ./st

@@ -4,7 +4,6 @@
 
 {
   imports = [
-    ./discord.nix
     ./terminal.nix
     nix-colors.homeManagerModule
   ] ++ (if user == "sigkill" then [ ./personal-machine.nix ] else [ ]);
