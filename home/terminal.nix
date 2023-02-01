@@ -1,4 +1,4 @@
-{ config, pkgs, nix-colors, email,  ... }:
+{ config, pkgs, nix-colors, email, ... }:
 
 let
   generated = import ./_sources/generated.nix { inherit (pkgs) fetchurl fetchgit fetchFromGitHub; };
@@ -17,6 +17,7 @@ in
     file
     fzf
     git
+    grc
     nerdfonts
     # lsp support and bass fish plugin
     (python3.withPackages (p: with p; [ python-lsp-server ]))
@@ -88,5 +89,12 @@ in
     };
   };
 
+  services = { } // ( if pkgs.lib.hasInfix "linux" pkgs.system then {
+    gpg-agent = {
+      enable = true;
+      defaultCacheTtl = 1800;
+      enableSshSupport = true;
+    };
+  } else {});
 }
 
