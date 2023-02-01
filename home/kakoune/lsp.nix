@@ -8,9 +8,7 @@ let
     cling
     cmake
     cmake-language-server
-    gdb
     ninja
-    valgrind
   ];
 in
 {

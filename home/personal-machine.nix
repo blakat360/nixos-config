@@ -13,11 +13,16 @@
       anki
       bashmount
       brightnessctl
+      chromium
+      firefox
+      gdb
       pamixer
       rofi-bluetooth
       steam
+      valgrind
       vhs
       xsel
+      zoom-us
     ];
 
     sessionVariables = {

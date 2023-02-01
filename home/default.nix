@@ -14,20 +14,12 @@
   # paths it should manage.
   home = {
     username = "${user}";
-    homeDirectory = "/home/${user}";
-
+    homeDirectory = if pkgs.lib.hasInfix "linux" pkgs.system then "/home/${user}" else "/Users/${user}";
   };
 
   gtk.theme.package = nix-colors.lib-contrib.gtkThemeFromScheme {
     scheme = config.colorScheme;
   };
-
-  # Packages that should be installed to the user profile.
-  home.packages = with pkgs; [
-    chromium
-    firefox
-    zoom-us
-  ];
 
   # This value determines the Home Manager release that your
   # configuration is compatible with. This helps avoid breakage
