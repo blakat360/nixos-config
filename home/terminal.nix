@@ -102,17 +102,26 @@ in
     tmux = {
       enable = true;
       clock24 = true;
-      shell = "\${pkgs.zsh}/bin/fish";
+      shell = "${pkgs.fish}/bin/fish";
 			shortcut = "a";
       terminal = "screen-256color";
       escapeTime = 0;
+      baseIndex = 1;
+      sensibleOnTop = true;
       plugins = with pkgs.tmuxPlugins; [
         {
           plugin = tilish;
           extraConfig = ''
-
+            set -g @tilish-default 'main-vertical'
+            set -g @tilish-prefix 'C-space'
+            set -g repeat-time 1000
+            set -g @tilish-dmenu 'on'
           '';
         }
+        yank
+        prefix-highlight
+        better-mouse-mode
+        extrakto
       ];
     };
   };

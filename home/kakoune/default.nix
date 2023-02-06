@@ -19,6 +19,10 @@
       tabStop = 2;
       indentWidth = 2;
       ui.assistant = "cat";
+      numberLines.enable = true;
     };
+    extraConfig = ''
+      map global normal "/" "/(?i)"
+    '';
   };
 }
