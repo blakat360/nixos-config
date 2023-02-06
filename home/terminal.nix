@@ -109,15 +109,6 @@ in
       baseIndex = 1;
       sensibleOnTop = true;
       plugins = with pkgs.tmuxPlugins; [
-        {
-          plugin = tilish;
-          extraConfig = ''
-            set -g @tilish-default 'main-vertical'
-            set -g @tilish-prefix 'C-s'
-            set -g repeat-time 1000
-            set -g @tilish-dmenu 'on'
-          '';
-        }
         yank
         prefix-highlight
         better-mouse-mode
