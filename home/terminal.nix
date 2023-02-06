@@ -3,13 +3,15 @@
 let
   generated = import ./_sources/generated.nix { inherit (pkgs) fetchurl fetchgit fetchFromGitHub; };
   nix-colors-lib = nix-colors.lib-contrib { inherit pkgs; };
-  OS-specific-imports = if isLinux then [] else [ ./alacritty.nix ];
-  OS-specific-services = if isLinux then {
-    gpg-agent = { enable = true;
-      defaultCacheTtl = 1800;
-      enableSshSupport = true;
-    };
-  } else {};
+  OS-specific-imports = if isLinux then [ ] else [ ./kitty.nix ];
+  OS-specific-services =
+    if isLinux then {
+      gpg-agent = {
+        enable = true;
+        defaultCacheTtl = 1800;
+        enableSshSupport = true;
+      };
+    } else { };
 in
 {
   imports = [
@@ -23,7 +25,6 @@ in
     direnv
     fd
     file
-    fzf
     git
     grc
     nerdfonts
@@ -68,6 +69,13 @@ in
       enable = true;
       nix-direnv.enable = true;
     };
+    fzf = {
+      enable = true;
+      tmux.enableShellIntegration = true;
+    };
+    skim = {
+      enable = true;
+    };
     fish = {
       enable = true;
       shellAliases = {
@@ -94,6 +102,18 @@ in
     tmux = {
       enable = true;
       clock24 = true;
+      shell = "\${pkgs.zsh}/bin/fish";
+			shortcut = "a";
+      terminal = "screen-256color";
+      escapeTime = 0;
+      plugins = with pkgs.tmuxPlugins; [
+        {
+          plugin = tilish;
+          extraConfig = ''
+
+          '';
+        }
+      ];
     };
   };
 
