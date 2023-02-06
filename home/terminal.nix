@@ -113,7 +113,7 @@ in
           plugin = tilish;
           extraConfig = ''
             set -g @tilish-default 'main-vertical'
-            set -g @tilish-prefix 'C-space'
+            set -g @tilish-prefix 'C-s'
             set -g repeat-time 1000
             set -g @tilish-dmenu 'on'
           '';
@@ -122,7 +122,40 @@ in
         prefix-highlight
         better-mouse-mode
         extrakto
+        pain-control
       ];
+      extraConfig = with config.colorScheme.colors; ''
+        set-option -g status-position top
+
+        # default statusbar colors
+        set-option -g status-style "fg=#${base04},bg=#${base01}"
+       
+        # default window title colors
+        set-window-option -g window-status-style "fg=#${base04},bg=default"
+       
+        # active window title colors
+        set-window-option -g window-status-current-style "fg=#${base0A},bg=default"
+       
+        # pane border
+        set-option -g pane-border-style "fg=#${base01}"
+        set-option -g pane-active-border-style "fg=#${base02}"
+       
+        # message text
+        set-option -g message-style "fg=#${base05},bg=#${base01}"
+       
+        # pane number display
+        set-option -g display-panes-active-colour "#${base0B}"
+        set-option -g display-panes-colour "#${base0A}"
+       
+        # clock
+        set-window-option -g clock-mode-colour "#${base0B}"
+       
+        # copy mode highligh
+        set-window-option -g mode-style "fg=#${base04},bg=#${base02}"
+       
+        # bell
+        set-window-option -g window-status-bell-style "fg=#${base01},bg=#${base08}"
+      '';
     };
   };
 
