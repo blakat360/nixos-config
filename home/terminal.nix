@@ -99,6 +99,9 @@ in
       '';
     };
     zoxide.enable = true;
+    broot = {
+      enable = true;
+    };
     tmux = {
       enable = true;
       clock24 = true;
@@ -108,6 +111,7 @@ in
       escapeTime = 0;
       baseIndex = 1;
       sensibleOnTop = true;
+      tmuxinator.enable = true;
       plugins = with pkgs.tmuxPlugins; [
         yank
         prefix-highlight
