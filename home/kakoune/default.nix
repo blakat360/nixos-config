@@ -9,7 +9,7 @@
   ];
 
   home.sessionVariables = {
-    EDITOR="kak";
+    EDITOR = "kak";
   };
 
   programs.kakoune = {
@@ -23,6 +23,11 @@
     };
     extraConfig = ''
       map global normal "/" "/(?i)"
+
+      map global goto <left> h
+      map global goto <down> j
+      map global goto <up> k
+      map global goto <right> l
     '';
   };
 }
