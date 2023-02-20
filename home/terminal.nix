@@ -99,7 +99,7 @@ in
       ];
       interactiveShellInit = ''
         fish_vi_key_bindings
-        sh ${nix-colors-lib.shellThemeFromScheme { scheme = config.colorScheme; }}
+        sh ${nix-colors-lib.shellThemeFromScheme { scheme = config.colorScheme; }} &> /dev/null
       '';
     };
     zoxide.enable = true;
