@@ -8,6 +8,7 @@
     };
     settings = {
       "macos_option_as_alt" = "yes";
+      "shell" = "fish";
     };
   };
 }

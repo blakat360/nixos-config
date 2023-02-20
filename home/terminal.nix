@@ -38,6 +38,10 @@ in
     wget
   ];
 
+  home.sessionVariables = {
+		"SHELL" = "fish";
+  };
+
   programs = {
     command-not-found.enable = false;
     nix-index = {
@@ -105,7 +109,6 @@ in
     tmux = {
       enable = true;
       clock24 = true;
-      shell = "${pkgs.fish}/bin/fish";
 			shortcut = "a";
       terminal = "screen-256color";
       escapeTime = 0;
