@@ -1,10 +1,9 @@
-{ config, pkgs, nix-colors, email, isLinux, ... }:
+{ config, pkgs, nix-colors, email, ... }:
 
 let
   generated = import ./_sources/generated.nix { inherit (pkgs) fetchurl fetchgit fetchFromGitHub; };
   nix-colors-lib = nix-colors.lib-contrib { inherit pkgs; };
-  OS-specific-imports = if isLinux then [ ] else [ ./kitty.nix ];
-  OS-specific-services =
+  OS-specific-services = with pkgs.stdenv;
     if isLinux then {
       gpg-agent = {
         enable = true;
@@ -17,7 +16,8 @@ in
   imports = [
     ./starship_settings.nix
     ./kakoune
-  ] ++ OS-specific-imports;
+    ./kitty.nix
+  ];
 
   home.packages = with pkgs; [
     bat
@@ -47,6 +47,10 @@ in
     nix-index = {
       enable = true;
       enableFishIntegration = true;
+    };
+    exa = {
+      enable = true;
+      enableAliases = true;
     };
     starship = {
       enable = true;
@@ -99,7 +103,7 @@ in
       ];
       interactiveShellInit = ''
         fish_vi_key_bindings
-        sh ${nix-colors-lib.shellThemeFromScheme { scheme = config.colorScheme; }} &> /dev/null
+        sh ${nix-colors-lib.shellThemeFromScheme { scheme = config.colorScheme; }}
       '';
     };
     zoxide.enable = true;

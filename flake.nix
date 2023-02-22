@@ -14,17 +14,16 @@
   outputs =
     inputs@{ nixpkgs, home-manager, nix-colors, flake-utils, ... }:
     let
-      user = "edward.gokmen";
-      email = "edward.gokmen@helsing.ai";
-      pkgs = nixpkgs.legacyPackages."aarch64-darwin";
-      isLinux = pkgs.lib.hasInfix "linux" pkgs.system;
+      user = "sigkill";
+      email = "blakat360@gmail.com";
+      pkgs = nixpkgs.legacyPackages."x86_64-linux";
     in
     rec {
       homeConfigurations."${user}" = home-manager.lib.homeManagerConfiguration
         {
           inherit pkgs;
           modules = [ ./home ];
-          extraSpecialArgs = { inherit nix-colors user email isLinux; };
+          extraSpecialArgs = { inherit nix-colors user email; };
         };
 
       nixosConfigurations =
@@ -45,7 +44,7 @@
                     home-manager.useGlobalPkgs = true;
                     home-manager.useUserPackages = true;
                     home-manager.users.sigkill = import ./home;
-                    home-manager.extraSpecialArgs = { inherit nix-colors user email isLinux; };
+                    home-manager.extraSpecialArgs = { inherit nix-colors user email; };
                   }
                 ];
               };

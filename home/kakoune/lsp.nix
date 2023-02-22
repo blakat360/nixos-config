@@ -1,4 +1,4 @@
-{ config, pkgs, isLinux, ... }:
+{ config, pkgs, ... }:
 
 let
   cpp_pkgs = with pkgs; [
@@ -9,7 +9,7 @@ let
     cmake
     cmake-language-server
     ninja
-  ] ++ (if isLinux then [ gdb valgrind ] else [ ]);
+  ] ++ (if stdenv.isLinux then [ gdb valgrind ] else [ ]);
 in
 {
   home.packages = with pkgs; [
