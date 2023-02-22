@@ -2,6 +2,7 @@
 
 {
   imports = [
+    ./discord.nix
     ./wm/i3.nix
     ./rofi
     ./st
@@ -12,11 +13,14 @@
       anki
       bashmount
       brightnessctl
+      chromium
+      firefox
       pamixer
       rofi-bluetooth
       steam
       vhs
       xsel
+      zoom-us
     ];
 
     sessionVariables = {

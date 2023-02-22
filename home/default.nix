@@ -1,10 +1,9 @@
 #TODO: find a way to grab the exec command from the active window manager
 #      perhaps define a 'name' attr or smthng to grab
-{ config, pkgs, nix-colors, user, ... }:
+{ config, pkgs, nix-colors, user, isLinux, ... }:
 
 {
   imports = [
-    ./discord.nix
     ./terminal.nix
     nix-colors.homeManagerModule
   ] ++ (if user == "sigkill" then [ ./personal-machine.nix ] else [ ]);
@@ -15,20 +14,12 @@
   # paths it should manage.
   home = {
     username = "${user}";
-    homeDirectory = "/home/${user}";
-
+    homeDirectory = if isLinux then "/home/${user}" else "/Users/${user}";
   };
 
   gtk.theme.package = nix-colors.lib-contrib.gtkThemeFromScheme {
     scheme = config.colorScheme;
   };
-
-  # Packages that should be installed to the user profile.
-  home.packages = with pkgs; [
-    chromium
-    firefox
-    zoom-us
-  ];
 
   # This value determines the Home Manager release that your
   # configuration is compatible with. This helps avoid breakage
