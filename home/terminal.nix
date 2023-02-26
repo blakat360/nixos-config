@@ -27,11 +27,13 @@ in
     file
     git
     grc
+    jq
     nerdfonts
     # lsp support and bass fish plugin
     (python3.withPackages (p: with p; [ python-lsp-server ]))
     ripgrep
     starship
+    sd
     tldr
     tree
     unzip
@@ -39,7 +41,7 @@ in
   ];
 
   home.sessionVariables = {
-		"SHELL" = "fish";
+    "SHELL" = "fish";
   };
 
   programs = {
@@ -93,7 +95,11 @@ in
       functions = {
         fish_user_key_bindings = ''
           	  bind --mode default ' ' execute
-          	'';
+        '';
+        fish_greeting = ''
+        	set options "(⚈∇⚈ )" "(✿╹◡╹)" "/ᐠ. ᴗ.ᐟ\" "/ᐠ.ꞈ.ᐟ\" "/ᐠ_ ꞈ _ᐟ\"
+        	echo (shuf -n 1 -e $options)
+        '';
       };
       plugins = with generated; [
         { name = getopts.pname; src = getopts.src; }
@@ -103,7 +109,7 @@ in
       ];
       interactiveShellInit = ''
         fish_vi_key_bindings
-        sh ${nix-colors-lib.shellThemeFromScheme { scheme = config.colorScheme; }}
+        echo (sh ${nix-colors-lib.shellThemeFromScheme { scheme = config.colorScheme; }}) | sd -- "-ne" ""
       '';
     };
     zoxide.enable = true;
@@ -113,7 +119,7 @@ in
     tmux = {
       enable = true;
       clock24 = true;
-			shortcut = "a";
+      shortcut = "a";
       terminal = "screen-256color";
       escapeTime = 0;
       baseIndex = 1;
