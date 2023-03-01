@@ -97,8 +97,7 @@ in
           	  bind --mode default ' ' execute
         '';
         fish_greeting = ''
-        	set options "(⚈∇⚈ )" "(✿╹◡╹)" "/ᐠ. ᴗ.ᐟ\" "/ᐠ.ꞈ.ᐟ\" "/ᐠ_ ꞈ _ᐟ\"
-        	echo (shuf -n 1 -e $options)
+        	set options "(⚈∇⚈ )" "(✿╹◡╹)" "/ᐠ. ᴗ.ᐟ\\" "/ᐠ.ꞈ.ᐟ\\" "/ᐠ_ ꞈ _ᐟ\\"; echo (shuf -n 1 -e $options)
         '';
       };
       plugins = with generated; [
@@ -109,6 +108,7 @@ in
       ];
       interactiveShellInit = ''
         fish_vi_key_bindings
+        fish_greeting
         echo (sh ${nix-colors-lib.shellThemeFromScheme { scheme = config.colorScheme; }}) | sd -- "-ne" ""
       '';
     };
