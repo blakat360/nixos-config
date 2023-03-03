@@ -4,7 +4,7 @@
     enable = true;
     font = {
       name = "FiraCode Nerd Font Mono";
-      size = 17;
+      size = if pkgs.stdenv.isLinux then 12 else 17;
     };
     settings = {
       "macos_option_as_alt" = "yes";
