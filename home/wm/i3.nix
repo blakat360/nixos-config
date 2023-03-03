@@ -5,7 +5,7 @@
   xsession.windowManager.i3 = {
     enable = true;
     config = rec {
-      terminal = "st";
+      terminal = "kitty";
       modifier = "Mod4";
       menu = "rofi -show drun";
       defaultWorkspace = "workspace number 1";
