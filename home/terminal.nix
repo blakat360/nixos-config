@@ -11,6 +11,9 @@ let
         enableSshSupport = true;
       };
     } else { };
+	firacode = pkgs.nerdfonts.overrideAttrs ( old: {
+  	fonts = [ "firacode" ];
+	});
 in
 {
   imports = [
@@ -29,7 +32,7 @@ in
     grc
     jq
     libiconvReal
-    nerdfonts
+    firacode
     # lsp support and bass fish plugin
     (python3.withPackages (p: with p; [ python-lsp-server ]))
     ripgrep
@@ -99,7 +102,7 @@ in
           	  bind --mode default ' ' execute
         '';
         fish_greeting = ''
-        	set options "(⚈∇⚈ )" "(✿╹◡╹)" "/ᐠ. ᴗ.ᐟ\\" "/ᐠ.ꞈ.ᐟ\\" "/ᐠ_ ꞈ _ᐟ\\"; echo (shuf -n 1 -e $options)
+          	set options "(⚈∇⚈ )" "(✿╹◡╹)" "/ᐠ. ᴗ.ᐟ\\" "/ᐠ.ꞈ.ᐟ\\" "/ᐠ_ ꞈ _ᐟ\\"; echo (shuf -n 1 -e $options)
         '';
       };
       plugins = with generated; [
