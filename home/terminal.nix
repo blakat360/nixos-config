@@ -28,10 +28,12 @@ in
     git
     grc
     jq
+    libiconvReal
     nerdfonts
     # lsp support and bass fish plugin
     (python3.withPackages (p: with p; [ python-lsp-server ]))
     ripgrep
+    rustup
     starship
     sd
     tldr
