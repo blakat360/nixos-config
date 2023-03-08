@@ -54,7 +54,7 @@
     xserver = {
       enable = true;
       layout = "gb";
-      xkbOptions = "caps:swapescape";
+      xkbOptions = "caps:escape";
       libinput = {
         enable = true;
         touchpad = {
