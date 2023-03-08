@@ -20,6 +20,7 @@ in
     ./starship_settings.nix
     ./kakoune
     ./kitty.nix
+    ./rust.nix
   ];
 
   home.packages = with pkgs; [
@@ -36,7 +37,6 @@ in
     # lsp support and bass fish plugin
     (python3.withPackages (p: with p; [ python-lsp-server ]))
     ripgrep
-    rustup
     starship
     sd
     tldr

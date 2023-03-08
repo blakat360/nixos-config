@@ -12,10 +12,7 @@ let
   ] ++ (if stdenv.isLinux then [ gdb valgrind ] else [ ]);
 in
 {
-  home.packages = with pkgs; [
-    rnix-lsp
-    rust-analyzer
-  ] ++ cpp_pkgs;
+  home.packages = with pkgs; [ ] ++ cpp_pkgs;
 
   programs.kakoune = {
     plugins = with pkgs.kakounePlugins; [ kak-lsp ];
