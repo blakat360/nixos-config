@@ -7,7 +7,7 @@
     rust-analyzer
   ];
 
-  xdg.configFile."rustfmt/rustfmt.toml" = ''
+  xdg.configFile."rustfmt/rustfmt.toml".text = ''
   	tab_spaces = 2
   '';
 }
