@@ -17,7 +17,7 @@
     config = {
       showMatching = true;
       tabStop = 2;
-      indentWidth = null; # use tab (needed for makefiles)
+      indentWidth = 2;
       ui.assistant = "cat";
       numberLines.enable = true;
     };
