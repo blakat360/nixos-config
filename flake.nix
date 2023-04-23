@@ -8,11 +8,12 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
     flake-utils.url = "github:numtide/flake-utils";
+    mach-nix.url = "github:DavHau/mach-nix";
     nix-colors.url = "github:misterio77/nix-colors";
   };
 
   outputs =
-    inputs@{ nixpkgs, home-manager, nix-colors, flake-utils, ... }:
+    inputs@{ nixpkgs, home-manager, nix-colors, flake-utils, mach-nix, ... }:
     let
       user = "sigkill";
       email = "blakat360@gmail.com";
@@ -23,7 +24,7 @@
         {
           inherit pkgs;
           modules = [ ./home ];
-          extraSpecialArgs = { inherit nix-colors user email; };
+          extraSpecialArgs = { inherit nix-colors user email mach-nix; };
         };
 
       nixosConfigurations =
@@ -44,7 +45,7 @@
                     home-manager.useGlobalPkgs = true;
                     home-manager.useUserPackages = true;
                     home-manager.users.sigkill = import ./home;
-                    home-manager.extraSpecialArgs = { inherit nix-colors user email; };
+                    home-manager.extraSpecialArgs = { inherit nix-colors user email mach-nix; };
                   }
                 ];
               };

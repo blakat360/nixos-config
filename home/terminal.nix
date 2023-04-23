@@ -21,6 +21,7 @@ in
     ./kakoune
     ./kitty.nix
     ./rust.nix
+    ./python.nix
   ];
 
   home.packages = with pkgs; [
