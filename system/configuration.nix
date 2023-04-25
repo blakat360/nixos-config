@@ -12,6 +12,10 @@
 
   nix = {
     package = pkgs.nixFlakes;
+    settings.trusted-substituters = [
+      "https://nix-community.cachix.org"
+      "https://hydra.nixos.org"
+    ];
     extraOptions = ''
       experimental-features = nix-command flakes
       keep-outputs = true
