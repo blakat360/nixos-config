@@ -10,9 +10,15 @@ let
     cmake-language-server
     ninja
   ] ++ (if stdenv.isLinux then [ gdb valgrind ] else [ ]);
+  svelte_packages = with pkgs; [
+    nodePackages.typescript-language-server
+    nodePackages.svelte-check
+    nodePackages.svelte-check
+    tree-sitter-grammars.tree-sitter-svelte
+  ];
 in
 {
-  home.packages = with pkgs; [ ] ++ cpp_pkgs;
+  home.packages = with pkgs; [ ] ++ cpp_pkgs ++ svelte_packages;
 
   programs.kakoune = {
     plugins = with pkgs.kakounePlugins; [ kak-lsp ];
@@ -64,6 +70,16 @@ in
       filetypes = ["cmake"]
       roots = [".git", "compile_commands.json"]
       command = "cmake-language-server"
+
+      [language.svelte]
+      filetypes = ["svelte"]
+      roots = ["package.json", ".git"]
+      command = "svelteserver"
+
+      [language.typescript]
+			roots = ["package.json", "tsconfig.json", "jsconfig.json", ".git"]
+			filetypes = [ "javascript", "javascriptreact", "javascript.jsx", "typescript", "typescriptreact", "typescript.tsx" ]
+      command = "tsserver"
     '';
   };
 }
