@@ -1,0 +1,16 @@
+{ config, pkgs, nix-colors, email, ... }:
+let
+  node_pkgs = with pkgs.nodePackages; [
+    npm
+    svelte-check
+    svelte-check
+    typescript-language-server
+  ];
+in
+{
+  home.packages = with pkgs; [
+    tree-sitter-grammars.tree-sitter-svelte
+    yarn
+  ];
+}
+

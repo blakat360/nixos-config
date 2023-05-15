@@ -10,15 +10,9 @@ let
     cmake-language-server
     ninja
   ] ++ (if stdenv.isLinux then [ gdb valgrind ] else [ ]);
-  svelte_packages = with pkgs; [
-    nodePackages.typescript-language-server
-    nodePackages.svelte-check
-    nodePackages.svelte-check
-    tree-sitter-grammars.tree-sitter-svelte
-  ];
 in
 {
-  home.packages = with pkgs; [ ] ++ cpp_pkgs ++ svelte_packages;
+  home.packages = with pkgs; [ ] ++ cpp_pkgs;
 
   programs.kakoune = {
     plugins = with pkgs.kakounePlugins; [ kak-lsp ];

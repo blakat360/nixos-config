@@ -22,6 +22,7 @@ in
     ./kitty.nix
     ./rust.nix
     ./python.nix
+    ./web-dev.nix
   ];
 
   home.packages = with pkgs; [
