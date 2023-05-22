@@ -23,6 +23,7 @@ in
     ./rust.nix
     ./python.nix
     ./web-dev.nix
+    ./go.nix
   ];
 
   home.packages = with pkgs; [

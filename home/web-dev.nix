@@ -9,6 +9,7 @@ let
 in
 {
   home.packages = with pkgs; [
+    nodejs
     tree-sitter-grammars.tree-sitter-svelte
     yarn
   ];
