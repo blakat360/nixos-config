@@ -1,0 +1,55 @@
+[language.rust]
+  filetypes = ["rust"]
+  roots = ["Cargo.toml"]
+  command = "rust-analyzer"
+
+[language.python]
+  filetypes = ["python"]
+  roots = ["requirements.txt", "setup.py", ".git", "pyproject.toml"]
+  command = "pylsp"
+  offset_encoding = "utf-8"
+
+[language.nix]
+  filetypes = ["nix"]
+  roots = ["flake.nix", "shell.nix", ".git"]
+  command = "rnix-lsp"
+
+[language.c_cpp]
+  filetypes = ["c", "cpp"]
+  roots = ["compile_commands.json", ".git"]
+  command = "clangd"
+  # Disable additional information in autocompletion menus that Kakoune inserts into the buffer until https://github.com/ul/kak-lsp/issues/40 gets fixed
+  # args = ["--init={\"completion\":{\"detailedLabel\":false}}"]
+
+[language.cmake]
+  filetypes = ["cmake"]
+  roots = [".git", "compile_commands.json"]
+  command = "cmake-language-server"
+
+[language.svelte]
+  filetypes = ["svelte"]
+  roots = ["package.json", ".git"]
+  command = "svelteserver"
+
+[language.typescript]
+	roots = ["package.json", "tsconfig.json", "jsconfig.json", ".git"]
+	filetypes = [ "javascript", "javascriptreact", "javascript.jsx", "typescript", "typescriptreact", "typescript.tsx" ]
+  command = "tsserver"
+
+[language.go]
+	filetypes = ["go"]
+	roots = ["Gopkg.toml", "go.mod", ".git", ".hg"]
+	command = "gopls"
+	settings_section = "gopls"
+	[language.go.settings.gopls]
+		"formatting.gofumpt" = true
+
+[language.markdown]
+	roots = [".git"]
+	filetypes = ["md", "MD", "markdown"]
+  command = "marksman"
+
+[language.toml]
+	roots = [".git"]
+	filetypes = ["toml", "TOML"]
+  command = "taplo lsp stdio"
