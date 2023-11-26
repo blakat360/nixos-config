@@ -1,31 +1,37 @@
-{... }:
-
+{ config, pkgs, ... }:
 {
-  imports = [
-    ./lsp.nix
-    ./theme.nix
+  home.packages = with pkgs; [
+    nil # nix lsp
   ];
 
-  home.sessionsVariables = {
-    EDITO= "hx";
+  home.sessionVariables = {
+    EDITOR = "hx";
   }
 
-  programs.kakoune = {
+  programs.helix = {
     enable = true;
-    config = {
-      showMatching = true;
-      tabStop = 2;
-      indentWidth = 2;
-      ui.assistant = "cat";
-      numberLines.enable = true;
+    settings = {
+      theme = "nix-theme";
+      editor = {
+        cursor-shape = {
+          insert = "bar";
+          normal = "block";
+          select = "underline";
+        };
+        file-picker.hidden = false;
+        soft-wrap.enable = true;
+        lsp = {
+          display-messages = true;
+          display-inlay-hints = true;
+        };
+        statusline.left = [ "mode" "spinner" "file-name" "version-control" ];
+        cursorline = true;
+      };
+      keys.normal.esc = [ "collapse_selection" "keep_primary_selection" ];
     };
-    extraConfig = ''
-      map global normal "/" "/(?i)"
-
-      map global goto <left> h
-      map global goto <down> j
-      map global goto <up> k
-      map global goto <right> l
-    '';
   };
+
+  xdg.configFile."helix/themes/nix-theme.toml".source = pkgs.substituteAll (
+    { src = ./nix-theme.toml; } // config.colorScheme.colors
+  );
 }
