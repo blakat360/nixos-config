@@ -18,10 +18,8 @@ in
 {
   imports = [
     ./starship_settings.nix
-    ./kakoune
     ./kitty.nix
     ./rust.nix
-    ./python.nix
     ./web-dev.nix
     ./go.nix
   ];
@@ -30,10 +28,15 @@ in
     bat
     comma
     direnv
+    zathura
+    mutt
     fd
     file
     git
     grc
+    gurk-rs
+    pup
+    helix
     jq
     libiconvReal
     firacode
@@ -42,6 +45,7 @@ in
     ripgrep
     starship
     sd
+    qemu
     tldr
     tree
     unzip
@@ -57,10 +61,6 @@ in
     nix-index = {
       enable = true;
       enableFishIntegration = true;
-    };
-    exa = {
-      enable = true;
-      enableAliases = true;
     };
     starship = {
       enable = true;
@@ -79,9 +79,13 @@ in
         user.email = "${email}";
         add.interactive.useBuiltin = false;
         merge.conflictstyle = "diff3";
+        diff.tool = "delta";
         diff.colorMoved = "default";
         init.defaultBranch = "master";
       };
+    };
+    gpg = {
+      enable = true;
     };
     direnv = {
       enable = true;
@@ -94,11 +98,19 @@ in
     skim = {
       enable = true;
     };
+    eza = {
+      enable = true;
+      enableFishIntegration = true;
+      icons = true;
+      git = true;
+    };
     fish = {
       enable = true;
       shellAliases = {
         bm = "bashmount";
         mv = "mv -i";
+        lg = "lazygit";
+        e = "$EDITOR";
       };
       functions = {
         fish_user_key_bindings = ''
@@ -124,6 +136,7 @@ in
     broot = {
       enable = true;
     };
+    lazygit.enable = true;
     tmux = {
       enable = true;
       clock24 = true;
@@ -140,7 +153,7 @@ in
         extrakto
         pain-control
       ];
-      extraConfig = with config.colorScheme.colors; ''
+      extraConfig = with config.colorScheme.palette; ''
         set-option -g status-position top
 
         # default statusbar colors

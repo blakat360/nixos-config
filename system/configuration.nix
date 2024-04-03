@@ -12,10 +12,15 @@
 
   nix = {
     package = pkgs.nixFlakes;
-    settings.trusted-substituters = [
-      "https://nix-community.cachix.org"
-      "https://hydra.nixos.org"
-    ];
+      settings = {
+        trusted-substituters = [
+        "https://nix-community.cachix.org"
+        "https://hydra.nixos.org"
+      ];
+      trusted-users = [
+        "@wheel"
+      ];
+    };
     extraOptions = ''
       experimental-features = nix-command flakes
       keep-outputs = true
@@ -57,8 +62,10 @@
   services = {
     xserver = {
       enable = true;
-      layout = "gb";
-      xkbOptions = "caps:escape";
+      xkb = {
+        layout = "us";
+        options = "caps:escape";
+      };
       libinput = {
         enable = true;
         touchpad = {
@@ -74,7 +81,8 @@
   virtualisation.docker.enable = true;
 
   # keymap in tty
-  console.keyMap = "uk";
+  console.keyMap = "us";
+  # console.keyMap = "uk";
 
   # Enable sound with pipewire.
   sound.enable = true;
@@ -116,9 +124,67 @@
   ];
 
 	programs = {
+    # running binaries on nix
+    nix-ld.enable = true;
     steam.enable = true;
     fish.enable = true;
 	};
+
+  programs.nix-ld.libraries = with pkgs; [
+    alsa-lib
+    atk
+    at-spi2-atk
+    at-spi2-core
+    cairo
+    cups
+    curl
+    dbus
+    expat
+    fontconfig
+    freetype
+    fuse3
+    gdk-pixbuf
+    glib
+    gtk3
+    icu
+    libappindicator-gtk3
+    libdrm
+    libGL
+    libglvnd
+    libnotify
+    libpulseaudio
+    libunwind
+    libusb1
+    libuuid
+    libxkbcommon
+    libxml2
+    mesa
+    nspr
+    nss
+    openssl
+    pango
+    pipewire
+    stdenv.cc.cc
+    stdenv.cc.cc.lib
+    systemd
+    vulkan-loader
+    xorg.libX11
+    xorg.libxcb
+    xorg.libXcomposite
+    xorg.libXcursor
+    xorg.libXdamage
+    xorg.libXext
+    xorg.libXfixes
+    xorg.libXi
+    xorg.libxkbfile
+    xorg.libXrandr
+    xorg.libXrender
+    xorg.libXScrnSaver
+    xorg.libxshmfence
+    xorg.libXtst
+    zlib
+  ];
+
   hardware.bluetooth.enable = true;
 
   # Some programs need SUID wrappers, can be configured further or are

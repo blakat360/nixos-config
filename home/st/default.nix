@@ -3,7 +3,7 @@
   home.packages = with pkgs; [
     (st.overrideAttrs (oldAttrs: rec {
       configFile = pkgs.substituteAll (
-        { src = ./config.h; } // config.colorScheme.colors
+        { src = ./config.h; } // config.colorScheme.palette
       );
       patches = [
         # support emojis/glyphs/unicode/et

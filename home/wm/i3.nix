@@ -35,7 +35,7 @@
         "XF86MonBrightnessUp" = "exec --no-startup-id brightnessctl set +10%";
         "XF86MonBrightnessDown" = "exec --no-startup-id brightnessctl set 10%-";
       };
-      colors = with config.colorScheme.colors; rec {
+      colors = with config.colorScheme.palette; rec {
         unfocused         = {border = "#${base01}"; background = "#${base00}"; text = "#${base05}"; indicator = "#${base01}"; childBorder = "#${base01}";};
         focusedInactive   = {border = "#${base01}"; background = "#${base01}"; text = "#${base05}"; indicator = "#${base01}"; childBorder = "#${base01}";};
         focused           = {border = "#${base01}"; background = "#${base01}"; text = "#${base0D}"; indicator = "#${base01}"; childBorder = "#${base01}";};

@@ -5,6 +5,7 @@
 {
   imports = [
     ./terminal.nix
+    ./editor
     nix-colors.homeManagerModule
   ] ++ (if user == "sigkill" then [ ./personal-machine.nix ] else [ ]);
 

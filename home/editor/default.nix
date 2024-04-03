@@ -6,7 +6,7 @@
 
   home.sessionVariables = {
     EDITOR = "hx";
-  }
+  };
 
   programs.helix = {
     enable = true;
@@ -32,6 +32,6 @@
   };
 
   xdg.configFile."helix/themes/nix-theme.toml".source = pkgs.substituteAll (
-    { src = ./nix-theme.toml; } // config.colorScheme.colors
+    { src = ./nix-theme.toml; } // config.colorScheme.palette
   );
 }

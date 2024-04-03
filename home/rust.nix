@@ -3,8 +3,6 @@
 {
   home.packages = with pkgs; [
     rustup
-    rnix-lsp
-    rust-analyzer
   ];
 
   xdg.configFile."rustfmt/rustfmt.toml".text = ''

@@ -8,7 +8,7 @@
     enable = true;
     font = "FiraCode Nerd Font 15";
     theme = toString (pkgs.substituteAll (
-      { src = ./theme.rasi; } // config.colorScheme.colors
+      { src = ./theme.rasi; } // config.colorScheme.palette
     ));
   };
 }
