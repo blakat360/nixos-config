@@ -1,28 +1,40 @@
+[language-server.python-lsp]
+command = "pyright-langserver"
+config = ""
+args = ["--stdio"]
+
+[language-server.nix-lsp]
+command = "nil"
+args = ["--stdio"]
+
 [[language]]
 name = "python"
 roots = ["pyproject.toml", "setup.py", "Poetry.lock", ".git"]
-language-server = { command = "pyright-langserver", args = ["--stdio"] }
 auto-format = true
+language-servers = ["python-lsp"]
 formatter = {command = 'black', args = ["--quiet", "-"]}
-config = ""
 
 [[language]]
 name = "nix"
 roots = ["flake.nix", ".git"]
-language-server = { command = "nil", args = ["--stdio"] }
+language-servers = ["nix-lsp"]
 formatter = { command = "nixpkgs-fmt" }
+auto-format = true
 
 [[language]]
 name = "html"
 formatter = { command = 'prettier', args = ["--parser", "html"] }
+auto-format = true
 
 [[language]]
 name = "json"
 formatter = { command = 'prettier', args = ["--parser", "json"] }
+auto-format = true
 
 [[language]]
 name = "css"
 formatter = { command = 'prettier', args = ["--parser", "css"] }
+auto-format = true
 
 [[language]]
 name = "javascript"
