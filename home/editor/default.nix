@@ -2,6 +2,7 @@
 {
   home.packages = with pkgs; [
     nil # nix lsp
+    nixpkgs-fmt # nix formatter
   ];
 
   home.sessionVariables = {
@@ -34,4 +35,6 @@
   xdg.configFile."helix/themes/nix-theme.toml".source = pkgs.substituteAll (
     { src = ./nix-theme.toml; } // config.colorScheme.palette
   );
+
+  xdg.configFile."helix/languages.toml".source = ./languages.toml;
 }
