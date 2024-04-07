@@ -22,7 +22,7 @@ in
 
       monospace = {
         name = "Fira Code";
-        package = pkgs.fira-code;
+        package = pkgs.fira-code-nerdfont;
       };
 
       sizes = {
