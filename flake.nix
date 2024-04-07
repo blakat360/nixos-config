@@ -34,10 +34,12 @@
           mksystem = system_name:
             {
               "${system_name}" = nixpkgs.lib.nixosSystem {
-                specialArgs = { inherit nix-colors; };
+                specialArgs = { inherit nix-colors user email; };
                 system = "x86_64-linux";
                 modules = [
-                  ({ config, ... }: { networking.hostName = system_name; })
+                  ({ config, ... }: {
+                    networking.hostName = system_name;
+                  })
                   nixos-hardware.nixosModules.lenovo-thinkpad-t14-amd-gen3
                   ./system/configuration.nix
                   ./system/laptop.nix
@@ -53,7 +55,8 @@
               };
             };
         in
-        mksystem "thinkpad";
+        mksystem
+          "thinkpad";
     };
 }
 

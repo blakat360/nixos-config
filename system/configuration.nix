@@ -7,7 +7,6 @@
 {
   imports =
     [
-      # ./wm/dummy-x-session.nix
       ./wm/hyprland
     ];
 
@@ -61,20 +60,20 @@
 
   # Configure keymap in X11
   services = {
-    xserver = {
-      enable = true;
-      xkb = {
-        layout = "us";
-        options = "caps:escape";
-      };
-      libinput = {
-        enable = true;
-        touchpad = {
-          tapping = true;
-          naturalScrolling = true;
-        };
-      };
-    };
+    # xserver = {
+    #   enable = true;
+    #   xkb = {
+    #     layout = "us";
+    #     options = "caps:escape";
+    #   };
+    #   libinput = {
+    #     enable = true;
+    #     touchpad = {
+    #       tapping = true;
+    #       naturalScrolling = true;
+    #     };
+    #   };
+    # };
     printing.enable = true;
     udisks2.enable = true;
     fstrim.enable = true;
@@ -83,7 +82,6 @@
 
   # keymap in tty
   console.keyMap = "us";
-  # console.keyMap = "uk";
 
   # Enable sound with pipewire.
   sound.enable = true;
@@ -111,6 +109,7 @@
     description = "sigkill";
     shell = pkgs.fish;
     extraGroups = [ "networkmanager" "wheel" "docker" ];
+    initialPassword = "a";
   };
 
   # Allow unfree packages
