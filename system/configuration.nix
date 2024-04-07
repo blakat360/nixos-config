@@ -7,13 +7,14 @@
 {
   imports =
     [
-      ./wm/dummy-x-session.nix
+      # ./wm/dummy-x-session.nix
+      ./wm/hyprland
     ];
 
   nix = {
     package = pkgs.nixFlakes;
-      settings = {
-        trusted-substituters = [
+    settings = {
+      trusted-substituters = [
         "https://nix-community.cachix.org"
         "https://hydra.nixos.org"
       ];
@@ -123,12 +124,12 @@
     grc
   ];
 
-	programs = {
+  programs = {
     # running binaries on nix
     nix-ld.enable = true;
     steam.enable = true;
     fish.enable = true;
-	};
+  };
 
   programs.nix-ld.libraries = with pkgs; [
     alsa-lib

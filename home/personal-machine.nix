@@ -3,7 +3,7 @@
 {
   imports = [
     ./discord.nix
-    ./wm/i3.nix
+    ./wm/hyprland
     ./rofi
   ];
 
@@ -31,14 +31,14 @@
   };
 
 
-  services = {
-    betterlockscreen = {
-      enable = true;
-      arguments = [ "--color ${config.colorScheme.palette.base00}" ];
-    };
-    screen-locker = {
-      enable = true;
-      xautolock.enable = false;
-    };
-  };
+  # services = {
+  #   betterlockscreen = {
+  #     enable = true;
+  #     arguments = [ "--color ${config.colorScheme.palette.base00}" ];
+  #   };
+  #   screen-locker = {
+  #     enable = true;
+  #     xautolock.enable = false;
+  #   };
+  # };
 }
