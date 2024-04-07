@@ -8,6 +8,7 @@
   imports =
     [
       ./wm/hyprland
+      ./virtualisation.nix
     ];
 
   nix = {

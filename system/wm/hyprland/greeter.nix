@@ -14,7 +14,7 @@ in
         command = "${session}";
       };
       default_session = {
-        command = "${tuigreet} --greeting 'Welcome to NixOS!' --asterisks --remember --remember-user-session --time --cmd ${session}";
+        command = "${tuigreet} --greeting 'Ave ave cum ave!' --asterisks --remember --remember-user-session --time --cmd ${session}";
         user = "greeter";
       };
     };
