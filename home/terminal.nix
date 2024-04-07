@@ -11,9 +11,9 @@ let
         enableSshSupport = true;
       };
     } else { };
-	firacode = pkgs.nerdfonts.overrideAttrs ( old: {
-  	fonts = [ "firacode" ];
-	});
+  firacode = pkgs.nerdfonts.overrideAttrs (old: {
+    fonts = [ "firacode" ];
+  });
 in
 {
   imports = [
@@ -34,7 +34,6 @@ in
     file
     git
     grc
-    gurk-rs
     pup
     helix
     jq

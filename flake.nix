@@ -10,10 +10,11 @@
     flake-utils.url = "github:numtide/flake-utils";
     mach-nix.url = "github:DavHau/mach-nix";
     nix-colors.url = "github:misterio77/nix-colors";
+    nixos-hardware.url = "github:NixOS/nixos-hardware";
   };
 
   outputs =
-    inputs@{ nixpkgs, home-manager, nix-colors, flake-utils, mach-nix, ... }:
+    inputs@{ nixpkgs, home-manager, nix-colors, flake-utils, mach-nix, nixos-hardware, ... }:
     let
       user = "sigkill";
       email = "blakat360@gmail.com";
@@ -37,6 +38,7 @@
                 system = "x86_64-linux";
                 modules = [
                   ({ config, ... }: { networking.hostName = system_name; })
+                  nixos-hardware.nixosModules.lenovo-thinkpad-t14-amd-gen3
                   ./system/configuration.nix
                   ./system/laptop.nix
                   ./hardware/thinkpad.nix
