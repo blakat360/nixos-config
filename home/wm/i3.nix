@@ -1,5 +1,4 @@
-{ config, pkgs, lib, nix-colors, ... }:
-
+{ lib, ... }:
 {
   xsession.enable = true;
   xsession.windowManager.i3 = {
@@ -23,10 +22,10 @@
         "${modifier}+|" = "split v";
         "${modifier}+-" = "split h";
 
-				# power menu - locking works with loginctl
+        # power menu - locking works with loginctl
         "${modifier}+Escape" = "exec rofi -show power-menu -modi power-menu:rofi-power-menu";
-				# bluetooth menu
-				"${modifier}+b"      = "exec rofi-bluetooth";
+        # bluetooth menu
+        "${modifier}+b" = "exec rofi-bluetooth";
 
         "XF86AudioRaiseVolume" = "exec --no-startup-id pamixer --increase 10";
         "XF86AudioLowerVolume" = "exec --no-startup-id pamixer --decrease 10";
@@ -34,14 +33,6 @@
 
         "XF86MonBrightnessUp" = "exec --no-startup-id brightnessctl set +10%";
         "XF86MonBrightnessDown" = "exec --no-startup-id brightnessctl set 10%-";
-      };
-      colors = with config.colorScheme.palette; rec {
-        unfocused         = {border = "#${base01}"; background = "#${base00}"; text = "#${base05}"; indicator = "#${base01}"; childBorder = "#${base01}";};
-        focusedInactive   = {border = "#${base01}"; background = "#${base01}"; text = "#${base05}"; indicator = "#${base01}"; childBorder = "#${base01}";};
-        focused           = {border = "#${base01}"; background = "#${base01}"; text = "#${base0D}"; indicator = "#${base01}"; childBorder = "#${base01}";};
-        urgent            = {border = "#${base08}"; background = "#${base00}"; text = "#${base05}"; indicator = "#${base08}"; childBorder = "#${base08}";};
-        placeholder       = {border = "#${base00}"; background = "#${base00}"; text = "#${base05}"; indicator = "#${base00}"; childBorder = "#${base00}";};
-        background        = "#${base00}";
       };
     };
   };

@@ -29,16 +29,4 @@
       QT_AUTO_SCREEN_SET_FACTOR = 0;
     };
   };
-
-
-  # services = {
-  #   betterlockscreen = {
-  #     enable = true;
-  #     arguments = [ "--color ${config.colorScheme.palette.base00}" ];
-  #   };
-  #   screen-locker = {
-  #     enable = true;
-  #     xautolock.enable = false;
-  #   };
-  # };
 }

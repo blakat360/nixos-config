@@ -1,5 +1,4 @@
-{ config, pkgs, nix-colors, email, ... }:
-
+{ pkgs, ... }:
 {
   home.packages = with pkgs; [
     go

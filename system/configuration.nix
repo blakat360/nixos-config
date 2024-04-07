@@ -9,6 +9,8 @@
     [
       ./wm/hyprland
       ./virtualisation.nix
+      ./wm/dummy-x-session.nix
+      ./styling
     ];
 
   nix = {

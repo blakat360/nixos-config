@@ -12,7 +12,6 @@
   programs.helix = {
     enable = true;
     settings = {
-      theme = "nix-theme";
       editor = {
         cursor-shape = {
           insert = "bar";
@@ -31,10 +30,6 @@
       keys.normal.esc = [ "collapse_selection" "keep_primary_selection" ];
     };
   };
-
-  xdg.configFile."helix/themes/nix-theme.toml".source = pkgs.substituteAll (
-    { src = ./nix-theme.toml; } // config.colorScheme.palette
-  );
 
   xdg.configFile."helix/languages.toml".source = ./languages.toml;
 }

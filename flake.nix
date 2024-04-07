@@ -8,8 +8,10 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
     flake-utils.url = "github:numtide/flake-utils";
-    nix-colors.url = "github:misterio77/nix-colors";
+    mach-nix.url = "github:DavHau/mach-nix";
     nixos-hardware.url = "github:NixOS/nixos-hardware";
+
+    stylix.url = "github:danth/stylix";
   };
 
   outputs =
@@ -45,6 +47,7 @@
                   ./system/laptop.nix
                   ./hardware/thinkpad.nix
                   home-manager.nixosModules.home-manager
+                  stylix.nixosModules.stylix
                   {
                     home-manager.useGlobalPkgs = true;
                     home-manager.useUserPackages = true;
