@@ -2,7 +2,7 @@
 let
   firacode = pkgs.fira-code-nerdfont;
   theme = "${pkgs.base16-schemes}/share/themes/solarized-dark.yaml";
-  size = if pkgs.stdenv.isLinux then 12 else 17;
+  size = if pkgs.stdenv.isLinux then 12 else 16;
 in
 {
   stylix = {
@@ -32,10 +32,7 @@ in
       };
 
       sizes = {
-        desktop = size;
-        applications = size;
         terminal = size;
-        popups = size;
       };
     };
 

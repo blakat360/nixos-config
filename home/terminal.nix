@@ -122,7 +122,6 @@ in
       ];
       interactiveShellInit = ''
         fish_vi_key_bindings
-        fish_greeting
       '';
     };
     zoxide.enable = true;
