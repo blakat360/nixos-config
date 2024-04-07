@@ -2,18 +2,21 @@
 
   home.packages = with pkgs; [
     libsForQt5.dolphin
-    qt6.wayland
+    qt6.qtwayland
   ];
+
   programs = {
-    xdg.portal.enable = true;
     wofi.enable = true;
     waybar.enable = true;
+  };
+
+  services = {
     dunst.enable = true;
   };
+
   wayland.windowManager.hyprland = {
     enable = true;
     enableNvidiaPatches = isNvidia;
-    systemd.variables = [ "--all" ];
   };
 
   xdg.configFile."hypr/hyprland.conf".source = ./hyprland.conf;
