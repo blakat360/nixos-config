@@ -1,15 +1,12 @@
 #TODO: find a way to grab the exec command from the active window manager
 #      perhaps define a 'name' attr or smthng to grab
-{ config, pkgs, nix-colors, user, ... }:
+{ pkgs, user, ... }:
 
 {
   imports = [
     ./terminal.nix
     ./editor
-    nix-colors.homeManagerModule
   ] ++ (if user == "sigkill" then [ ./personal-machine.nix ] else [ ]);
-
-  colorScheme = nix-colors.colorSchemes.solarized-dark;
 
   # Home Manager needs a bit of information about you and the
   # paths it should manage.
@@ -18,9 +15,6 @@
     homeDirectory = with pkgs.stdenv; if isLinux then "/home/${user}" else "/Users/${user}";
   };
 
-  gtk.theme.package = nix-colors.lib-contrib.gtkThemeFromScheme {
-    scheme = config.colorScheme;
-  };
 
   # This value determines the Home Manager release that your
   # configuration is compatible with. This helps avoid breakage

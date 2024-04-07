@@ -7,13 +7,14 @@
 {
   imports =
     [
+      ./styling
       ./wm/dummy-x-session.nix
     ];
 
   nix = {
     package = pkgs.nixFlakes;
-      settings = {
-        trusted-substituters = [
+    settings = {
+      trusted-substituters = [
         "https://nix-community.cachix.org"
         "https://hydra.nixos.org"
       ];
@@ -109,6 +110,7 @@
     isNormalUser = true;
     description = "sigkill";
     shell = pkgs.fish;
+    initialPassword = "a";
     extraGroups = [ "networkmanager" "wheel" "docker" ];
   };
 
@@ -123,12 +125,12 @@
     grc
   ];
 
-	programs = {
+  programs = {
     # running binaries on nix
     nix-ld.enable = true;
     steam.enable = true;
     fish.enable = true;
-	};
+  };
 
   programs.nix-ld.libraries = with pkgs; [
     alsa-lib

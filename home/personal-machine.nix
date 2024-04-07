@@ -34,7 +34,6 @@
   services = {
     betterlockscreen = {
       enable = true;
-      arguments = [ "--color ${config.colorScheme.palette.base00}" ];
     };
     screen-locker = {
       enable = true;

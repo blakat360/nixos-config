@@ -1,4 +1,4 @@
-{ config, pkgs, nix-colors, email, ... }:
+{ pkgs, ... }:
 let
   node_pkgs = with pkgs.nodePackages; [
     npm
@@ -12,6 +12,6 @@ in
     nodejs
     tree-sitter-grammars.tree-sitter-svelte
     yarn
-  ];
+  ] ++ node_pkgs;
 }
 

@@ -1,8 +1,7 @@
-{ config, pkgs, nix-colors, email, ... }:
+{ config, pkgs, email, ... }:
 
 let
   generated = import ./_sources/generated.nix { inherit (pkgs) fetchurl fetchgit fetchFromGitHub; };
-  nix-colors-lib = nix-colors.lib-contrib { inherit pkgs; };
   OS-specific-services = with pkgs.stdenv;
     if isLinux then {
       gpg-agent = {
@@ -11,9 +10,6 @@ let
         enableSshSupport = true;
       };
     } else { };
-  firacode = pkgs.nerdfonts.overrideAttrs (old: {
-    fonts = [ "firacode" ];
-  });
 in
 {
   imports = [
@@ -38,7 +34,6 @@ in
     helix
     jq
     libiconvReal
-    firacode
     # lsp support and bass fish plugin
     (python3.withPackages (p: with p; [ python-lsp-server ]))
     ripgrep
@@ -128,7 +123,6 @@ in
       interactiveShellInit = ''
         fish_vi_key_bindings
         fish_greeting
-        echo (sh ${nix-colors-lib.shellThemeFromScheme { scheme = config.colorScheme; }}) | sd -- "-ne" ""
       '';
     };
     zoxide.enable = true;
@@ -152,38 +146,6 @@ in
         extrakto
         pain-control
       ];
-      extraConfig = with config.colorScheme.palette; ''
-        set-option -g status-position top
-
-        # default statusbar colors
-        set-option -g status-style "fg=#${base04},bg=#${base01}"
-       
-        # default window title colors
-        set-window-option -g window-status-style "fg=#${base04},bg=default"
-       
-        # active window title colors
-        set-window-option -g window-status-current-style "fg=#${base0A},bg=default"
-       
-        # pane border
-        set-option -g pane-border-style "fg=#${base01}"
-        set-option -g pane-active-border-style "fg=#${base02}"
-       
-        # message text
-        set-option -g message-style "fg=#${base05},bg=#${base01}"
-       
-        # pane number display
-        set-option -g display-panes-active-colour "#${base0B}"
-        set-option -g display-panes-colour "#${base0A}"
-       
-        # clock
-        set-window-option -g clock-mode-colour "#${base0B}"
-       
-        # copy mode highligh
-        set-window-option -g mode-style "fg=#${base04},bg=#${base02}"
-       
-        # bell
-        set-window-option -g window-status-bell-style "fg=#${base01},bg=#${base08}"
-      '';
     };
   };
 

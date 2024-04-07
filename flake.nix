@@ -9,12 +9,13 @@
     };
     flake-utils.url = "github:numtide/flake-utils";
     mach-nix.url = "github:DavHau/mach-nix";
-    nix-colors.url = "github:misterio77/nix-colors";
     nixos-hardware.url = "github:NixOS/nixos-hardware";
+
+    stylix.url = "github:danth/stylix";
   };
 
   outputs =
-    inputs@{ nixpkgs, home-manager, nix-colors, flake-utils, mach-nix, nixos-hardware, ... }:
+    inputs@{ nixpkgs, home-manager, flake-utils, mach-nix, nixos-hardware, stylix, ... }:
     let
       user = "sigkill";
       email = "blakat360@gmail.com";
@@ -25,7 +26,7 @@
         {
           inherit pkgs;
           modules = [ ./home ];
-          extraSpecialArgs = { inherit nix-colors user email mach-nix; };
+          extraSpecialArgs = { inherit user email mach-nix stylix; };
         };
 
       nixosConfigurations =
@@ -34,7 +35,7 @@
           mksystem = system_name:
             {
               "${system_name}" = nixpkgs.lib.nixosSystem {
-                specialArgs = { inherit nix-colors; };
+                specialArgs = { };
                 system = "x86_64-linux";
                 modules = [
                   ({ config, ... }: { networking.hostName = system_name; })
@@ -43,11 +44,14 @@
                   ./system/laptop.nix
                   ./hardware/thinkpad.nix
                   home-manager.nixosModules.home-manager
+                  stylix.nixosModules.stylix
                   {
                     home-manager.useGlobalPkgs = true;
                     home-manager.useUserPackages = true;
                     home-manager.users.sigkill = import ./home;
-                    home-manager.extraSpecialArgs = { inherit nix-colors user email mach-nix; };
+                    home-manager.extraSpecialArgs = {
+                      inherit user email mach-nix stylix;
+                    };
                   }
                 ];
               };
