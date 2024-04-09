@@ -2,14 +2,13 @@
 # your system.  Help is available in the configuration.nix(5) man page
 # and in the NixOS manual (accessible by running ‘nixos-help’).
 
-{ config, pkgs, ... }:
+{ pkgs, ... }:
 
 {
   imports =
     [
       ./wm/hyprland
       ./virtualisation.nix
-      ./wm/dummy-x-session.nix
       ./styling
     ];
 
@@ -47,14 +46,17 @@
   };
 
 
-  networking.wireless.enable = false; # Enables wireless support via wpa_supplicant.
+  networking = {
+    wireless.enable = false; # Enables wireless support via wpa_supplicant.
+    networkmanager.enable = true;
+    nameservers = [ "1.1.1.1" "8.8.8.8" ];
+  };
+
 
   # Configure network proxy if necessary
   # networking.proxy.default = "http://user:password@proxy:port/";
   # networking.proxy.noProxy = "127.0.0.1,localhost,internal.domain";
 
-  # Enable networking
-  networking.networkmanager.enable = true;
 
   # Set your time zone.
   time.timeZone = "Europe/London";

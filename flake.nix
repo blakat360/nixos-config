@@ -7,7 +7,6 @@
       url = "github:nix-community/home-manager";
       inputs.nixpkgs.follows = "nixpkgs";
     };
-    flake-utils.url = "github:numtide/flake-utils";
     mach-nix.url = "github:DavHau/mach-nix";
     nixos-hardware.url = "github:NixOS/nixos-hardware";
 
@@ -15,28 +14,27 @@
   };
 
   outputs =
-    inputs@{ nixpkgs, home-manager, nix-colors, flake-utils, nixos-hardware, ... }:
+    { nixpkgs, home-manager, nixos-hardware, stylix, ... }:
     let
       user = "sigkill";
       email = "blakat360@gmail.com";
       pkgs = nixpkgs.legacyPackages."x86_64-linux";
       isNvidia = false;
     in
-    rec {
+    {
       homeConfigurations."${user}" = home-manager.lib.homeManagerConfiguration
         {
           inherit pkgs;
           modules = [ ./home ];
-          extraSpecialArgs = { inherit nix-colors user email isNvidia; };
+          extraSpecialArgs = { inherit user email isNvidia; };
         };
 
       nixosConfigurations =
         let
-          lib = nixpkgs.lib;
           mksystem = system_name:
             {
               "${system_name}" = nixpkgs.lib.nixosSystem {
-                specialArgs = { inherit nix-colors user email; };
+                specialArgs = { inherit user email isNvidia stylix; };
                 system = "x86_64-linux";
                 modules = [
                   ({ config, ... }: {
@@ -52,7 +50,7 @@
                     home-manager.useGlobalPkgs = true;
                     home-manager.useUserPackages = true;
                     home-manager.users.sigkill = import ./home;
-                    home-manager.extraSpecialArgs = { inherit nix-colors user email isNvidia; };
+                    home-manager.extraSpecialArgs = { inherit user email isNvidia stylix; };
                   }
                 ];
               };
