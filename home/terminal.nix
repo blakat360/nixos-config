@@ -16,6 +16,7 @@ in
     ./starship_settings.nix
     ./kitty.nix
     ./rust.nix
+    ./erlang.nix
     ./web-dev.nix
     ./go.nix
   ];
