@@ -30,47 +30,50 @@
 
       nixosConfigurations =
         let
+          inherit (pkgs) lib;
           configs =
             {
               "thinkpad" =
-                [
-                  nixos-hardware.nixosModules.lenovo-thinkpad-t14-amd-gen3
-                  ./hardware/thinkpad.nix
-                ];
-              "pc" =
-                let
-                  hardware = with nixos-hardware.nixosModules.common; [
-                    gpu.nvidia
-                    cpu.amd
-                    pc
-                    pc.ssd
+                {
+                  extraModules =
+                    [
+                      nixos-hardware.nixosModules.lenovo-thinkpad-t14-amd-gen3
+                      ./hardware/thinkpad.nix
+                    ];
+                };
+              "pc" = {
+                disk = "nvme1n1";
+                extraModules =
+                  with nixos-hardware.nixosModules;
+                  [
+                    common-gpu-nvidia
+                    common-cpu-amd
+                    common-pc
+                    common-pc-ssd
                   ];
-                in
-                [
-                  # todo: disko
-                ] ++ hardware;
+              };
             };
 
-          mksystem = systemName: extraModules:
-            {
-              "${systemName}" = nixpkgs.lib.nixosSystem {
-                specialArgs = { };
-                system = "x86_64-linux";
-                modules = [
-                  ({ config, ... }: { networking.hostName = systemName; })
-                  ./system/configuration.nix
-                  home-manager.nixosModules.home-manager
-                  stylix.nixosModules.stylix
-                  {
-                    home-manager.useGlobalPkgs = true;
-                    home-manager.useUserPackages = true;
-                    home-manager.users.sigkill = import ./home;
-                    home-manager.extraSpecialArgs = {
-                      inherit user email stylix;
-                    };
-                  }
-                ] ++ extraModules;
-              };
+
+          mksystem = systemName: spec:
+            nixpkgs.lib.nixosSystem {
+              specialArgs = { };
+              system = "x86_64-linux";
+              modules = [
+                ({ config, ... }: { networking.hostName = systemName; }
+                  // lib.attrsets.optionalAttrs (spec ? disk) (import ./system/diskoTemplate.nix spec.disk))
+                ./system/configuration.nix
+                home-manager.nixosModules.home-manager
+                stylix.nixosModules.stylix
+                {
+                  home-manager.useGlobalPkgs = true;
+                  home-manager.useUserPackages = true;
+                  home-manager.users.sigkill = import ./home;
+                  home-manager.extraSpecialArgs = {
+                    inherit user email stylix;
+                  };
+                }
+              ] ++ spec.extraModules;
             };
         in
         builtins.mapAttrs mksystem configs;

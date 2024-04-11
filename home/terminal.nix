@@ -29,7 +29,6 @@ in
     mutt
     fd
     file
-    git
     grc
     pup
     helix
