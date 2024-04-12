@@ -8,12 +8,13 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
     nixos-hardware.url = "github:NixOS/nixos-hardware";
+    disko.url = "github:nix-community/disko";
 
     stylix.url = "github:danth/stylix";
   };
 
   outputs =
-    { nixpkgs, home-manager, nixos-hardware, stylix, ... }:
+    { nixpkgs, home-manager, nixos-hardware, stylix, disko, ... }:
     let
       systemConfigs = import ./systemConfigs.nix;
       options = import ./options.nix;
@@ -31,9 +32,9 @@
                 options # defines options
                 spec.systemImports
                 spec.config
+                disko.nixosModules.disko
                 ({ config, ... }: {
                   networking.hostName = systemName;
-                  hardware.enableAllFirmware = true;
                 })
                 ./system/configuration.nix
                 home-manager.nixosModules.home-manager
