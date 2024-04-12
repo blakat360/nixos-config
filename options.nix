@@ -1,7 +1,7 @@
 { lib, ... }:
 let
   inherit (lib) mkOption mdDoc;
-  inherit (lib.types) nullor bool str;
+  inherit (lib.types) nullOr bool str;
 in
 {
   options = {
@@ -11,7 +11,7 @@ in
     };
     email = mkOption
       {
-        type = nullor str;
+        type = nullOr str;
         description = mdDoc "The email associated with the main user";
       };
     isNvidia = mkOption {
@@ -23,7 +23,7 @@ in
       '';
     };
     services.disko.disk = mkOption {
-      type = nullor str;
+      type = nullOr str;
       description = mdDoc ''
         The /dev/<disk> to partition e.g. "nvme0n1" or "sda". 
 

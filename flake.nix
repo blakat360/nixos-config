@@ -21,7 +21,7 @@
     {
       nixosConfigurations =
         let
-          mkSystem = systemName: configSpec:
+          mkSystem = systemName: spec:
             nixpkgs.lib.nixosSystem {
               specialArgs = {
                 inherit nixos-hardware stylix;
@@ -29,9 +29,11 @@
               system = "x86_64-linux";
               modules = [
                 options # defines options
-                configSpec # sets options
+                spec.systemImports
+                spec.config
                 ({ config, ... }: {
                   networking.hostName = systemName;
+                  hardware.enableAllFirmware = true;
                 })
                 ./system/configuration.nix
                 home-manager.nixosModules.home-manager
@@ -39,13 +41,18 @@
                 {
                   home-manager.useGlobalPkgs = true;
                   home-manager.useUserPackages = true;
-                  home-manager.users.sigkill =
-                    ({ config, ... }: {
+                  home-manager.users = {
+                    "${spec.config.user}" = {
                       imports = [
-                        configSpec # defines all the options defining what this should be
                         ./home
+                        ({ config, ... }: {
+                          imports = [ options ];
+                          inherit (spec) config;
+                        })
                       ];
-                    });
+                    };
+                  };
+
                   home-manager.extraSpecialArgs = {
                     inherit stylix nixos-hardware;
                   };

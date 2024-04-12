@@ -70,7 +70,7 @@ in
         options = { navigate = true; light = false; };
       };
       extraConfig = {
-        user.email = lib.mkIf (builtins.trace config config ? email) config.email;
+        user.email = lib.mkIf (config ? email) config.email;
         add.interactive.useBuiltin = false;
         merge.conflictstyle = "diff3";
         diff.tool = "delta";

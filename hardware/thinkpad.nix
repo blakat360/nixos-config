@@ -37,8 +37,7 @@
   # networking.interfaces.enp1s0f0.useDHCP = lib.mkDefault true;
 
   hardware.cpu.amd.updateMicrocode = lib.mkDefault config.hardware.enableRedistributableFirmware;
-  hardware.enableRedistributableFirmware = true;
-  # hardware.enableAllFirmware = true;
+  hardware.enableAllFirmware = true;
   hardware.firmware = with pkgs; [ wireless-regdb ];
   hardware.trackpoint = {
     enable = true;
