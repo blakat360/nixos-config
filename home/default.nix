@@ -1,18 +1,15 @@
-#TODO: find a way to grab the exec command from the active window manager
-#      perhaps define a 'name' attr or smthng to grab
-{ pkgs, user, ... }:
+{ pkgs, config, ... }:
 
 {
   imports = [
     ./terminal.nix
     ./editor
-  ] ++ (if user == "sigkill" then [ ./personal-machine.nix ] else [ ]);
+    ./personal-machine.nix
+  ];
 
-  # Home Manager needs a bit of information about you and the
-  # paths it should manage.
   home = {
-    username = "${user}";
-    homeDirectory = with pkgs.stdenv; if isLinux then "/home/${user}" else "/Users/${user}";
+    username = "${config.user}";
+    homeDirectory = with pkgs.stdenv; if isLinux then "/home/${config.user}" else "/Users/${config.user}";
   };
 
 

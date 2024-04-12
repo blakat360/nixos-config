@@ -15,68 +15,45 @@
   outputs =
     { nixpkgs, home-manager, nixos-hardware, stylix, ... }:
     let
-      user = "sigkill";
-      email = "blakat360@gmail.com";
-      pkgs = nixpkgs.legacyPackages."x86_64-linux";
-
+      systemConfigs = import ./systemConfigs.nix;
+      options = import ./options.nix;
     in
     {
-      homeConfigurations."${user}" = home-manager.lib.homeManagerConfiguration
-        {
-          inherit pkgs;
-          modules = [ ./home ];
-          extraSpecialArgs = { inherit user email stylix; };
-        };
-
       nixosConfigurations =
         let
-          inherit (pkgs) lib;
-          configs =
-            {
-              "thinkpad" =
-                {
-                  extraModules =
-                    [
-                      nixos-hardware.nixosModules.lenovo-thinkpad-t14-amd-gen3
-                      ./hardware/thinkpad.nix
-                    ];
-                };
-              "pc" = {
-                disk = "nvme1n1";
-                extraModules =
-                  with nixos-hardware.nixosModules;
-                  [
-                    common-gpu-nvidia
-                    common-cpu-amd
-                    common-pc
-                    common-pc-ssd
-                  ];
-              };
-            };
-
-
-          mksystem = systemName: spec:
+          mkSystem = systemName: configSpec:
             nixpkgs.lib.nixosSystem {
-              specialArgs = { };
+              specialArgs = {
+                inherit nixos-hardware stylix;
+              };
               system = "x86_64-linux";
               modules = [
-                ({ config, ... }: { networking.hostName = systemName; }
-                  // lib.attrsets.optionalAttrs (spec ? disk) (import ./system/diskoTemplate.nix spec.disk))
+                options # defines options
+                configSpec # sets options
+                ({ config, ... }: {
+                  networking.hostName = systemName;
+                })
                 ./system/configuration.nix
                 home-manager.nixosModules.home-manager
                 stylix.nixosModules.stylix
                 {
                   home-manager.useGlobalPkgs = true;
                   home-manager.useUserPackages = true;
-                  home-manager.users.sigkill = import ./home;
+                  home-manager.users.sigkill =
+                    ({ config, ... }: {
+                      imports = [
+                        configSpec # defines all the options defining what this should be
+                        ./home
+                      ];
+                    });
                   home-manager.extraSpecialArgs = {
-                    inherit user email stylix;
+                    inherit stylix nixos-hardware;
                   };
                 }
-              ] ++ spec.extraModules;
+              ];
             };
         in
-        builtins.mapAttrs mksystem configs;
+        builtins.mapAttrs mkSystem systemConfigs;
     };
 }
 

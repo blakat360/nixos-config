@@ -1,4 +1,4 @@
-{ config, pkgs, email, ... }:
+{ config, pkgs, lib, ... }:
 
 let
   generated = import ./_sources/generated.nix { inherit (pkgs) fetchurl fetchgit fetchFromGitHub; };
@@ -70,7 +70,7 @@ in
         options = { navigate = true; light = false; };
       };
       extraConfig = {
-        user.email = "${email}";
+        user.email = lib.mkIf (builtins.trace config config ? email) config.email;
         add.interactive.useBuiltin = false;
         merge.conflictstyle = "diff3";
         diff.tool = "delta";

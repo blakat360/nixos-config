@@ -1,9 +1,9 @@
-{ pkgs, lib, ... }:
+{ pkgs, lib, config, ... }:
 
 {
   services.xserver = {
     displayManager = {
-      autoLogin.user = "sigkill";
+      autoLogin.user = config.user;
       sessionCommands = ''
         ${lib.getBin pkgs.dbus}/bin/dbus-update-activation-environment --systemd --all
       '';

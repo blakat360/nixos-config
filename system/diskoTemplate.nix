@@ -1,9 +1,13 @@
-device: {
+{ config, ... }:
+let
+  cfg = config.services.disko;
+in
+{
   disko.devices = {
     disk = {
-      "${device}" = {
+      "${cfg.disk}" = {
         type = "disk";
-        device = "/dev/${device}";
+        device = "/dev/${cfg.disk}";
         content = {
           type = "gpt";
           partitions = {
