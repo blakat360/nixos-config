@@ -23,6 +23,10 @@
           common-pc
           common-pc-ssd
 
+          {
+            hardware.nvidia.prime.offload.enable = false;
+          }
+
           ./system/diskoTemplate.nix
         ];
     };
