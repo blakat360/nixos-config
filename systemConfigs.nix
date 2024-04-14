@@ -34,7 +34,7 @@
       user = "sigkill";
       email = "blakat360@gmail.com";
       isNvidia = true;
-      services.disko.disk = "garbage";
+      services.disko.disk = "nvme1n1";
     };
   };
 }
