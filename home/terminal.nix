@@ -1,4 +1,4 @@
-{ config, pkgs, email, ... }:
+{ config, pkgs, lib, ... }:
 
 let
   generated = import ./_sources/generated.nix { inherit (pkgs) fetchurl fetchgit fetchFromGitHub; };
@@ -15,35 +15,32 @@ in
   imports = [
     ./starship_settings.nix
     ./kitty.nix
-    ./rust.nix
-    ./web-dev.nix
-    ./go.nix
+    ./languages
   ];
 
   home.packages = with pkgs; [
     bat
     comma
     direnv
-    zathura
-    mutt
     fd
     file
-    git
     grc
-    pup
     helix
     jq
     libiconvReal
-    # lsp support and bass fish plugin
-    (python3.withPackages (p: with p; [ python-lsp-server ]))
-    ripgrep
-    starship
-    sd
+    mutt
+    parallel
+    pup
+    (python3.withPackages (p: with p; [ python-lsp-server ])) # lsp support and bass fish plugin
     qemu
+    ripgrep
+    sd
+    starship
     tldr
     tree
     unzip
     wget
+    zathura
   ];
 
   home.sessionVariables = {
@@ -70,7 +67,7 @@ in
         options = { navigate = true; light = false; };
       };
       extraConfig = {
-        user.email = "${email}";
+        user.email = lib.mkIf (config ? email) config.email;
         add.interactive.useBuiltin = false;
         merge.conflictstyle = "diff3";
         diff.tool = "delta";

@@ -2,7 +2,7 @@
 # your system.  Help is available in the configuration.nix(5) man page
 # and in the NixOS manual (accessible by running ‘nixos-help’).
 
-{ pkgs, ... }:
+{ config, pkgs, lib, ... }:
 
 {
   imports =
@@ -30,7 +30,6 @@
     '';
   };
 
-  # Bootloader.
   boot = {
     loader = {
       systemd-boot = {
@@ -45,7 +44,6 @@
     kernelPackages = pkgs.linuxPackages_latest;
   };
 
-
   networking = {
     wireless.enable = false; # Enables wireless support via wpa_supplicant.
     networkmanager.enable = true;
@@ -57,7 +55,6 @@
   # networking.proxy.default = "http://user:password@proxy:port/";
   # networking.proxy.noProxy = "127.0.0.1,localhost,internal.domain";
 
-
   # Set your time zone.
   time.timeZone = "Europe/London";
 
@@ -65,20 +62,6 @@
 
   # Configure keymap in X11
   services = {
-    # xserver = {
-    #   enable = true;
-    #   xkb = {
-    #     layout = "us";
-    #     options = "caps:escape";
-    #   };
-    #   libinput = {
-    #     enable = true;
-    #     touchpad = {
-    #       tapping = true;
-    #       naturalScrolling = true;
-    #     };
-    #   };
-    # };
     printing.enable = true;
     udisks2.enable = true;
     fstrim.enable = true;
@@ -109,12 +92,19 @@
   };
 
   # Define a user account. Don't forget to set a password with ‘passwd’.
-  users.users.sigkill = {
-    isNormalUser = true;
-    description = "sigkill";
-    shell = pkgs.fish;
-    extraGroups = [ "networkmanager" "wheel" "docker" ];
-    initialPassword = "a";
+  users.users = {
+    "${config.user}" = {
+      isNormalUser = true;
+      shell = pkgs.fish;
+      initialPassword = "a";
+      extraGroups = [ "networkmanager" "wheel" "docker" ];
+      openssh.authorizedKeys.keys = [
+        (import ./sshPub.nix)
+      ];
+    };
+    root.openssh.authorizedKeys.keys = [
+      (import ./sshPub.nix)
+    ];
   };
 
   # Allow unfree packages
@@ -217,6 +207,6 @@
   # this value at the release version of the first install of this system.
   # Before changing this value read the documentation for this option
   # (e.g. man configuration.nix or on https://nixos.org/nixos/options.html).
-  system.stateVersion = "22.11"; # Did you read the comment?
+  system.stateVersion = "22.16"; # Did you read the comment?
 
 }
