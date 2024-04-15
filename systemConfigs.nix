@@ -25,6 +25,7 @@
 
           {
             hardware.nvidia.prime.offload.enable = false;
+            services.openssh.enable = true;
           }
 
           ./system/diskoTemplate.nix

@@ -114,6 +114,9 @@
       shell = pkgs.fish;
       initialPassword = "a";
       extraGroups = [ "networkmanager" "wheel" "docker" ];
+      openssh.authorizedKeys.keys = [
+        (import ./sshPub.nix)
+      ];
     };
     root.openssh.authorizedKeys.keys = [
       (import ./sshPub.nix)
