@@ -27,10 +27,22 @@
             hardware.nvidia = {
               prime.offload.enable = false;
               modesetting.enable = true;
-              open = true;
+              powerManagement = {
+                enable = true;
+              };
               package = config.boot.kernelPackages.nvidiaPackages.stable;
             };
+
             services.openssh.enable = true;
+
+            environment.sessionVariables = {
+              WLR_DRM_DEVICES = "/dev/dri/card1";
+            };
+
+
+            boot.kernelModules = [
+              "nvidia_drm"
+            ];
           }
 
           ./system/diskoTemplate.nix
