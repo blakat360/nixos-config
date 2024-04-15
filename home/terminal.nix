@@ -15,35 +15,32 @@ in
   imports = [
     ./starship_settings.nix
     ./kitty.nix
-    ./rust.nix
-    ./erlang.nix
-    ./web-dev.nix
-    ./go.nix
+    ./languages
   ];
 
   home.packages = with pkgs; [
     bat
     comma
     direnv
-    zathura
-    mutt
     fd
     file
     grc
-    pup
     helix
     jq
     libiconvReal
-    # lsp support and bass fish plugin
-    (python3.withPackages (p: with p; [ python-lsp-server ]))
-    ripgrep
-    starship
-    sd
+    mutt
+    parallel
+    pup
+    (python3.withPackages (p: with p; [ python-lsp-server ])) # lsp support and bass fish plugin
     qemu
+    ripgrep
+    sd
+    starship
     tldr
     tree
     unzip
     wget
+    zathura
   ];
 
   home.sessionVariables = {
