@@ -55,8 +55,8 @@
 
   i18n.defaultLocale = "en_GB.utf8";
 
-  # Configure keymap in X11
   services = {
+    dbus.enable = true;
     printing.enable = true;
     udisks2.enable = true;
     fstrim.enable = true;
@@ -128,7 +128,6 @@
     cairo
     cups
     curl
-    dbus
     expat
     fontconfig
     freetype
@@ -175,7 +174,14 @@
     zlib
   ];
 
-  hardware.bluetooth.enable = true;
+  hardware = {
+    bluetooth.enable = true;
+    opengl = {
+      enable = true;
+      driSupport = true;
+      driSupport32Bit = true;
+    };
+  };
 
   # Some programs need SUID wrappers, can be configured further or are
   # started in user sessions.

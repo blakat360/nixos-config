@@ -1,4 +1,4 @@
-{ pkgs, ... }: {
+{ config, pkgs, ... }: {
 
   home.packages = with pkgs; [
     libsForQt5.dolphin
@@ -16,7 +16,6 @@
 
   wayland.windowManager.hyprland = {
     enable = true;
+    extraConfig = builtins.readFile ./hyprland.conf;
   };
-
-  xdg.configFile."hypr/hyprland.conf".source = ./hyprland.conf;
 }

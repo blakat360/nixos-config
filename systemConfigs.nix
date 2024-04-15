@@ -9,11 +9,12 @@
     config = {
       user = "sigkill";
       email = "blakat360@gmail.com";
+      isNvidia = false;
     };
   };
 
   pc = {
-    systemImports = { nixos-hardware, ... }: {
+    systemImports = { config, nixos-hardware, ... }: {
       imports =
         with nixos-hardware.nixosModules;
         [
@@ -23,7 +24,12 @@
           common-pc-ssd
 
           {
-            hardware.nvidia.prime.offload.enable = false;
+            hardware.nvidia = {
+              prime.offload.enable = false;
+              modesetting.enable = true;
+              open = true;
+              package = config.boot.kernelPackages.nvidiaPackages.stable;
+            };
             services.openssh.enable = true;
           }
 
@@ -33,6 +39,7 @@
     config = {
       user = "sigkill";
       email = "blakat360@gmail.com";
+      isNvidia = true;
       services.disko.disk = "nvme1n1";
     };
   };
