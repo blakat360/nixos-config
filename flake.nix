@@ -7,57 +7,80 @@
       url = "github:nix-community/home-manager";
       inputs.nixpkgs.follows = "nixpkgs";
     };
-    mach-nix.url = "github:DavHau/mach-nix";
     nixos-hardware.url = "github:NixOS/nixos-hardware";
+    disko.url = "github:nix-community/disko";
 
     stylix.url = "github:danth/stylix";
   };
 
   outputs =
-    { nixpkgs, home-manager, nixos-hardware, stylix, ... }:
+    { nixpkgs, home-manager, nixos-hardware, stylix, disko, ... }:
     let
-      user = "sigkill";
-      email = "blakat360@gmail.com";
-      pkgs = nixpkgs.legacyPackages."x86_64-linux";
-      isNvidia = false;
+      systemConfigs = import ./systemConfigs.nix;
+      options = import ./options.nix;
     in
     {
-      homeConfigurations."${user}" = home-manager.lib.homeManagerConfiguration
-        {
-          inherit pkgs;
-          modules = [ ./home ];
-          extraSpecialArgs = { inherit user email isNvidia; };
-        };
-
       nixosConfigurations =
         let
-          mksystem = system_name:
-            {
-              "${system_name}" = nixpkgs.lib.nixosSystem {
-                specialArgs = { inherit user email isNvidia stylix; };
-                system = "x86_64-linux";
-                modules = [
-                  ({ config, ... }: {
-                    networking.hostName = system_name;
-                  })
-                  nixos-hardware.nixosModules.lenovo-thinkpad-t14-amd-gen3
-                  ./system/configuration.nix
-                  ./system/laptop.nix
-                  ./hardware/thinkpad.nix
-                  home-manager.nixosModules.home-manager
-                  stylix.nixosModules.stylix
-                  {
-                    home-manager.useGlobalPkgs = true;
-                    home-manager.useUserPackages = true;
-                    home-manager.users.sigkill = import ./home;
-                    home-manager.extraSpecialArgs = { inherit user email isNvidia stylix; };
-                  }
-                ];
+          mkSystem = systemName: spec:
+            nixpkgs.lib.nixosSystem {
+              specialArgs = {
+                inherit nixos-hardware stylix;
               };
+              system = "x86_64-linux";
+              modules = [
+                options # defines options
+                spec.systemImports
+                spec.config
+                disko.nixosModules.disko
+                ({ config, ... }: {
+                  networking.hostName = systemName;
+                })
+                ./system/configuration.nix
+                home-manager.nixosModules.home-manager
+                stylix.nixosModules.stylix
+                {
+                  home-manager.useGlobalPkgs = true;
+                  home-manager.useUserPackages = true;
+                  home-manager.users = {
+                    "${spec.config.user}" = {
+                      imports = [
+                        ./home
+                        ({ config, ... }: {
+                          imports = [ options ];
+                          inherit (spec) config;
+                        })
+                      ];
+                    };
+                  };
+
+                  home-manager.extraSpecialArgs = {
+                    inherit stylix nixos-hardware;
+                  };
+                }
+              ];
             };
         in
-        mksystem
-          "thinkpad";
+        (
+          builtins.mapAttrs mkSystem systemConfigs
+        ) //
+        {
+          iso = nixpkgs.lib.nixosSystem
+            {
+              system = "x86_64-linux";
+              modules = [
+                "${nixpkgs}/nixos/modules/installer/cd-dvd/installation-cd-graphical-gnome.nix"
+                "${nixpkgs}/nixos/modules/installer/cd-dvd/channel.nix"
+                {
+                  nix.extraOptions = "experimental-features = nix-command flakes";
+
+                  users.users.root.openssh.authorizedKeys.keys = [
+                    (import ./system/sshPub.nix)
+                  ];
+                }
+              ];
+            };
+        };
     };
 }
 

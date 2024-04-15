@@ -1,4 +1,4 @@
-{ pkgs, user, ... }:
+{ config, pkgs, ... }:
 
 let
   tuigreet = "${pkgs.greetd.tuigreet}/bin/tuigreet";
@@ -10,7 +10,7 @@ in
     enable = true;
     settings = {
       initial_session = {
-        inherit user;
+        inherit (config) user;
         command = "${session}";
       };
       default_session = {

@@ -1,4 +1,4 @@
-{ pkgs, isNvidia, ... }: {
+{ pkgs, ... }: {
 
   home.packages = with pkgs; [
     libsForQt5.dolphin
@@ -16,7 +16,6 @@
 
   wayland.windowManager.hyprland = {
     enable = true;
-    enableNvidiaPatches = isNvidia;
   };
 
   xdg.configFile."hypr/hyprland.conf".source = ./hyprland.conf;
