@@ -14,8 +14,19 @@
     dunst.enable = true;
   };
 
-  wayland.windowManager.hyprland = {
-    enable = true;
-    extraConfig = builtins.readFile ./hyprland.conf;
-  };
+  wayland.windowManager.hyprland =
+    {
+      enable = true;
+      systemd = {
+        variables = [ "--all" ];
+        # runs on startup
+        extraCommands = [
+          "waybar"
+        ];
+      };
+
+      settings = import ./settings.nix;
+    };
 }
+
+
