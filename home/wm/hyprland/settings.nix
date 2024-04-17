@@ -43,17 +43,8 @@
 
     rounding = 10;
 
-    blur = {
-      enabled = true;
-      size = 3;
-      passes = 1;
-
-      vibrancy = 0.1696;
-    };
-
-    drop_shadow = true;
-    shadow_range = 4;
-    shadow_render_power = 3;
+    blur.enabled = false;
+    drop_shadow = false;
   };
 
   animations =
@@ -118,22 +109,25 @@
 
   # Example binds, see https://wiki.hyprland.org/Configuring/Binds/ for more
   bind = [
-    "$mainMod, Q, exec, $terminal"
+    "$mainMod, RETURN, exec, $terminal"
     "$mainMod, C, killactive,"
 
-    "$mainMod, M, exit,"
-    "$mainMod, E, exec, $fileManager"
+    "$mainMod, Q, exit,"
     "$mainMod, V, togglefloating,"
 
-    "$mainMod, R, exec, $menu"
-    "$mainMod, P, pseudo," # dwindle
-    "$mainMod, J, togglesplit, " # dwindle
+    "$mainMod, D, exec, $menu"
+    "$mainMod, T, togglesplit, " # dwindle
 
     # Move focus with mainMod + arrow keys
     "$mainMod, left, movefocus, l"
     "$mainMod, right, movefocus, r"
     "$mainMod, up, movefocus, u"
     "$mainMod, down, movefocus, d"
+
+    "$mainMod_SHIFT, left, movewindow, l"
+    "$mainMod_SHIFT, right, movewindow, r"
+    "$mainMod_SHIFT, up, movewindow, u"
+    "$mainMod_SHIFT, down, movewindow, d"
 
     # Switch workspaces with mainMod + [0-9]
     "$mainMod, 1, workspace, 1"
@@ -167,6 +161,6 @@
   bindm = [
     # Move/resize windows with mainMod + LMB/RMB and dragging
     "$mainMod, mouse:272, movewindow"
-    "$mainMod, mouse:273, resizewindow"
+    "$mainMod_ALT, mouse:272, resizewindow"
   ];
 }
