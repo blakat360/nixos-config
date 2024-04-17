@@ -3,6 +3,7 @@
   home.packages = with pkgs; [
     libsForQt5.dolphin
     qt6.qtwayland
+    libnotify
   ];
 
   programs = {

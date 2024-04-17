@@ -1,7 +1,6 @@
 {
   "$mainMod" = "SUPER";
   "$terminal" = "kitty";
-  "$fileManager" = "dolphin";
   "$menu" = "wofi --show drun";
 
   env = [
@@ -85,15 +84,9 @@
   misc = {
     # See https://wiki.hyprland.org/Configuring/Variables/ for more
     vfr = true;
+    disable_splash_rendering = true;
+    disable_hyprland_logo = true;
   };
-
-  # Example per-device config
-  # See https://wiki.hyprland.org/Configuring/Keywords/#per-device-input-configs for more
-  device =
-    {
-      name = "epic-mouse-v1";
-      sensitivity = -0.5;
-    };
 
   # Example windowrule v1
   # windowrule = float, ^(kitty)$
@@ -105,15 +98,13 @@
   ];
 
 
-
-
   # Example binds, see https://wiki.hyprland.org/Configuring/Binds/ for more
   bind = [
     "$mainMod, RETURN, exec, $terminal"
     "$mainMod, C, killactive,"
 
     "$mainMod, Q, exit,"
-    "$mainMod, V, togglefloating,"
+    "$mainMod, F, togglefloating,"
 
     "$mainMod, D, exec, $menu"
     "$mainMod, T, togglesplit, " # dwindle
@@ -161,6 +152,6 @@
   bindm = [
     # Move/resize windows with mainMod + LMB/RMB and dragging
     "$mainMod, mouse:272, movewindow"
-    "$mainMod_ALT, mouse:272, resizewindow"
+    "$mainMod_CTRL, mouse:272, resizewindow"
   ];
 }
