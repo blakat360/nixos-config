@@ -7,6 +7,17 @@ args = ["--stdio"]
 command = "nil"
 args = ["--stdio"]
 
+
+[language-server.clangd]
+command = "clangd"
+args = ["--enable-config"]
+
+[[language]]
+name = "cpp"
+language-servers = ["clangd"]
+roots = [".git", "CMakeLists.txt"]
+auto-format = true
+
 [[language]]
 name = "python"
 roots = ["pyproject.toml", "setup.py", "Poetry.lock", ".git"]
