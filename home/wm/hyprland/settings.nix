@@ -13,6 +13,10 @@
     "QT_QPA_PLATFORMTHEME,qt5ct" # change to qt6ct if you have that
   ];
 
+  monitor = [
+    "eDP-1, 3840x2160@60, 0x0, 1.00"
+  ];
+
   input = {
     kb_layout = "us";
     kb_variant = " ";
