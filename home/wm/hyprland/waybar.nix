@@ -24,13 +24,13 @@
           "max-length" = 50;
         };
         "battery" = {
-          "format" = " {icon}  {capacity}%";
+          "format" = "{icon} {capacity}%";
           "format-icons" = [ "" "" "" "" "" ];
         };
         "clock" = {
           "tooltip" = true;
-          "format" = "    {:%H.%M}";
-          "tooltip-format" = " 󰃭  {:%Y-%m-%d}";
+          "format" = " {:%H.%M}";
+          "tooltip-format" = "󰃭 {:%Y-%m-%d}";
         };
         "network" = {
           "interface" = "wlp2s0";
@@ -48,14 +48,14 @@
         "idle_inhibitor" = {
           "format" = "{icon}";
           "format-icons" = {
-            "activated" = "   idle_blocked";
-            "deactivated" = "   ";
+            "activated" = "  idle_blocked";
+            "deactivated" = " ";
           };
           "timeout" = 30.5; # minutes before reset
         };
         "bluetooth" = {
-          "format" = " {status}";
-          "format-connected" = "   {device_alias}";
+          "format" = "bluetooth: {status}";
+          "format-connected" = " bluetooth: {device_alias}";
           # "format-connected-battery" = "   {device_alias} {device_battery_percentage}%";
           # "format-device-preference" = [ "device1"; "device2" ]; // preference list deciding the displayed device
           "tooltip-format" = "{controller_alias}\t{controller_address}\n\n{num_connections} connected";
@@ -65,8 +65,8 @@
           "on-click" = "blueberry";
         };
         "wireplumber" = {
-          "format" = "   {volume}%";
-          "format-muted" = "   ";
+          "format" = " {volume}%";
+          "format-muted" = "";
           "on-click" = "pavucontrol";
         };
       };

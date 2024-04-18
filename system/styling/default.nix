@@ -21,8 +21,8 @@ in
       };
 
       monospace = {
-        name = "Fira Code";
-        package = pkgs.fira-code-nerdfont;
+        name = "Monoisome Regular";
+        package = pkgs.monoid;
       };
 
       sizes = {
