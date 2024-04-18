@@ -10,6 +10,7 @@
       user = "sigkill";
       email = "blakat360@gmail.com";
       isNvidia = false;
+      hasBattery = true;
     };
   };
 
@@ -52,6 +53,7 @@
       user = "sigkill";
       email = "blakat360@gmail.com";
       isNvidia = true;
+      hasBattery = false;
       services.disko.disk = "nvme1n1";
     };
   };

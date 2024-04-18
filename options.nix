@@ -13,6 +13,10 @@ in
       type = bool;
       description = mdDoc "Whether the system has an nvidia gpu";
     };
+    hasBattery = mkOption {
+      type = bool;
+      description = mdDoc "Whether the system has a battery";
+    };
     email = mkOption {
       type = nullOr str;
       description = mdDoc "The email associated with the main user";

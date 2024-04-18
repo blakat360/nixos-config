@@ -23,6 +23,7 @@ in
 
   imports = [
     ./lock.nix
+    ./waybar.nix
   ];
 
   home.packages = with pkgs;
@@ -38,7 +39,6 @@ in
 
   programs = {
     wofi.enable = true;
-    waybar.enable = true;
   };
 
   services = {
