@@ -2,7 +2,7 @@
   thinkpad = {
     systemImports = { nixos-hardware, ... }: {
       imports = [
-        ./hardware/thinkpad.nix
+        ./system/diskoTemplate.nix
         nixos-hardware.nixosModules.lenovo-thinkpad-t14-amd-gen3
       ];
     };
@@ -11,6 +11,7 @@
       email = "blakat360@gmail.com";
       isNvidia = false;
       hasBattery = true;
+      services.disko.disk = "nvme0n1";
     };
   };
 
