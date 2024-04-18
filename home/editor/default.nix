@@ -9,9 +9,12 @@
     EDITOR = "hx";
   };
 
+  stylix.targets.helix.enable = false;
+
   programs.helix = {
     enable = true;
     settings = {
+      theme = "nix-theme";
       editor = {
         cursor-shape = {
           insert = "bar";
@@ -32,4 +35,6 @@
   };
 
   xdg.configFile."helix/languages.toml".source = ./languages.toml;
+
+  xdg.configFile."helix/themes/nix-theme.toml".text = import ./theme.nix { inherit config; };
 }
