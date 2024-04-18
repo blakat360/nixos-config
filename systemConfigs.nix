@@ -1,9 +1,15 @@
 {
   thinkpad = {
-    systemImports = { nixos-hardware, ... }: {
+    systemImports = { pkgs, nixos-hardware, ... }: {
       imports = [
         ./system/diskoTemplate.nix
+        ./hardware/thinkpad.nix
         nixos-hardware.nixosModules.lenovo-thinkpad-t14-amd-gen3
+        {
+          environment.sessionVariables = {
+            WLR_DRM_DEVICES = "/dev/dri/card1";
+          };
+        }
       ];
     };
     config = {
