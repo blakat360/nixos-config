@@ -1,10 +1,18 @@
 { config, pkgs, ... }: {
 
-  home.packages = with pkgs; [
-    libsForQt5.dolphin
-    qt6.qtwayland
-    libnotify
+  imports = [
+    ./lock.nix
   ];
+
+  home.packages = with pkgs;
+    [
+      libsForQt5.dolphin
+      qt6.qtwayland
+      libnotify
+      polkit-kde-agent
+      wl-clipboard
+      hyprpicker # colour picker
+    ];
 
   programs = {
     wofi.enable = true;
@@ -22,6 +30,7 @@
         variables = [ "--all" ];
         # runs on startup
         extraCommands = [
+          "hypridle"
           "waybar"
         ];
       };
