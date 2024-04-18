@@ -1,4 +1,25 @@
-{ config, pkgs, ... }: {
+{ config, pkgs, ... }:
+let
+  powermenu = pkgs.writeShellScriptBin "powermenu" ''
+    # Launching wofi with options "shutdown" and "lock"
+    chosen_option=$(echo -e "shutdown\nlock" | ${pkgs.wofi}/bin/wofi --dmenu)
+
+    # Switch case statement to handle chosen options
+    case $chosen_option in
+        "shutdown")
+            shutdown now
+            ;;
+        "lock")
+            ${pkgs.hyprlock}/bin/hyprlock
+            ;;
+        *)
+            echo "Invalid option"
+            ;;
+    esac
+
+  '';
+in
+{
 
   imports = [
     ./lock.nix
@@ -12,6 +33,7 @@
       polkit-kde-agent
       wl-clipboard
       hyprpicker # colour picker
+      powermenu
     ];
 
   programs = {
@@ -23,20 +45,11 @@
     dunst.enable = true;
   };
 
-  wayland.windowManager.hyprland =
-    {
-      enable = true;
-      systemd = {
-        variables = [ "--all" ];
-        # runs on startup
-        extraCommands = [
-          "hypridle"
-          "waybar"
-        ];
-      };
+  wayland.windowManager.hyprland = {
+    enable = true;
+    settings = import ./settings.nix;
+  };
 
-      settings = import ./settings.nix;
-    };
 }
 
 

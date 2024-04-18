@@ -3,6 +3,11 @@
   "$terminal" = "kitty";
   "$menu" = "wofi --show drun";
 
+  exec-once = [
+    "waybar"
+    "hypridle"
+  ];
+
   env = [
     "XCURSOR_SIZE,2"
     "QT_QPA_PLATFORMTHEME,qt5ct" # change to qt6ct if you have that
@@ -108,6 +113,8 @@
 
     "$mainMod, D, exec, $menu"
     "$mainMod, T, togglesplit, " # dwindle
+
+    "$mainMod, ESCAPE, exec, powermenu" # dwindle
 
     # Move focus with mainMod + arrow keys
     "$mainMod, left, movefocus, l"

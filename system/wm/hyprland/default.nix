@@ -1,5 +1,10 @@
-{ config, lib, ... }: {
+{ config, pkgs, lib, ... }: {
   imports = [ ./greeter.nix ];
+
+  environment.systemPackages = with pkgs; [
+    waybar
+    hypridle
+  ];
 
   programs.hyprland = {
     xwayland.enable = true;
