@@ -3,7 +3,7 @@
 {
   imports = [
     ./discord.nix
-    ./wm/i3.nix
+    ./wm/hyprland
     ./rofi
   ];
 
@@ -22,16 +22,5 @@
       zoom-us
     ];
 
-  };
-
-
-  services = {
-    betterlockscreen = {
-      enable = true;
-    };
-    screen-locker = {
-      enable = true;
-      xautolock.enable = false;
-    };
   };
 }

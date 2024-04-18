@@ -26,6 +26,7 @@ in
     file
     grc
     helix
+    htop-vim
     jq
     libiconvReal
     mutt

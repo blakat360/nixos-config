@@ -1,14 +1,10 @@
-# Edit this configuration file to define what should be installed on
-# your system.  Help is available in the configuration.nix(5) man page
-# and in the NixOS manual (accessible by running ‘nixos-help’).
-
-{ config, pkgs, lib, ... }:
-
+{ config, pkgs, ... }:
 {
   imports =
     [
+      ./wm/hyprland
+      ./virtualisation.nix
       ./styling
-      ./wm/dummy-x-session.nix
     ];
 
   nix = {
@@ -50,7 +46,6 @@
   };
 
 
-
   # Configure network proxy if necessary
   # networking.proxy.default = "http://user:password@proxy:port/";
   # networking.proxy.noProxy = "127.0.0.1,localhost,internal.domain";
@@ -60,31 +55,17 @@
 
   i18n.defaultLocale = "en_GB.utf8";
 
-  # Configure keymap in X11
   services = {
-    xserver = {
-      enable = true;
-      xkb = {
-        layout = "us";
-        options = "caps:escape";
-      };
-      libinput = {
-        enable = true;
-        touchpad = {
-          tapping = true;
-          naturalScrolling = true;
-        };
-      };
-    };
+    dbus.enable = true;
     printing.enable = true;
     udisks2.enable = true;
     fstrim.enable = true;
+    udev.extraRules = "SUBSYSTEM==\"power_supply\", ATTR{status}==\"Discharging\", ATTR{capacity}==\"[0-10]\", RUN+=\"${pkgs.dunst}/bin/dunstify \"WARNING LOW BATTERY\"\n";
   };
   virtualisation.docker.enable = true;
 
   # keymap in tty
   console.keyMap = "us";
-  # console.keyMap = "uk";
 
   # Enable sound with pipewire.
   sound.enable = true;
@@ -106,12 +87,12 @@
     #media-session.enable = true;
   };
 
-  # Define a user account. Don't forget to set a password with ‘passwd’.
+  # Define a user account. Don't forget to set a password with ‘passwd’ after flashing.
   users.users = {
     "${config.user}" = {
       isNormalUser = true;
-      description = "The default non-root user";
       shell = pkgs.fish;
+      description = "${config.user}";
       initialPassword = "a";
       extraGroups = [ "networkmanager" "wheel" "docker" ];
       openssh.authorizedKeys.keys = [
@@ -129,6 +110,7 @@
   # List packages installed in system profile. To search, run:
   # $ nix search wget
   environment.systemPackages = with pkgs; [
+    pciutils
     comma
     nvfetcher
     grc
@@ -149,7 +131,6 @@
     cairo
     cups
     curl
-    dbus
     expat
     fontconfig
     freetype
@@ -196,7 +177,14 @@
     zlib
   ];
 
-  hardware.bluetooth.enable = true;
+  hardware = {
+    bluetooth.enable = true;
+    opengl = {
+      enable = true;
+      driSupport = true;
+      driSupport32Bit = true;
+    };
+  };
 
   # Some programs need SUID wrappers, can be configured further or are
   # started in user sessions.

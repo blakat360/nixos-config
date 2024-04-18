@@ -9,18 +9,17 @@ in
       type = str;
       description = mdDoc "The main user (not root)";
     };
-    email = mkOption
-      {
-        type = nullOr str;
-        description = mdDoc "The email associated with the main user";
-      };
     isNvidia = mkOption {
       type = bool;
-      description = mdDoc ''
-        Mark the system as one with an nvidia gpu.
-
-        NB: This is not used to pull in nixos-hardware modules, only to configure various installed services and programs
-      '';
+      description = mdDoc "Whether the system has an nvidia gpu";
+    };
+    hasBattery = mkOption {
+      type = bool;
+      description = mdDoc "Whether the system has a battery";
+    };
+    email = mkOption {
+      type = nullOr str;
+      description = mdDoc "The email associated with the main user";
     };
     services.disko.disk = mkOption {
       type = nullOr str;
