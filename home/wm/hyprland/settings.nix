@@ -165,4 +165,23 @@
     "$mainMod, mouse:272, movewindow"
     "$mainMod_CTRL, mouse:272, resizewindow"
   ];
+
+  # media keys
+  bindle = [
+    ", XF86AudioRaiseVolume, exec, pamixer --increase 10"
+    ", XF86AudioLowerVolume, exec, pamixer --decrease 10"
+    ", XF86MonBrightnessUp, exec, brightnessctl set +10%"
+    ", XF86MonBrightnessDown, exec, brightnessctl set 10%-"
+    ", XF86Search, exec, launchpad"
+
+  ];
+
+  bindl = [
+    # ", XF86AudioMute, exec, amixer set Master toggle"
+    ", XF86AudioMute, exec, wpctl set-mute @DEFAULT_AUDIO_SINK@ toggle"
+    ", XF86AudioPlay, exec, playerctl play-pause" # the stupid key is called play , but it toggles
+    ", XF86AudioNext, exec, playerctl next"
+    ", XF86AudioPrev, exec, playerctl previous"
+
+  ];
 }
