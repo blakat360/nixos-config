@@ -35,12 +35,12 @@
         "network" = {
           "interface" = "wlp2s0";
           "format" = "{ifname}";
-          "format-wifi" = "{essid} ({signalStrength}%) ";
-          "format-ethernet" = "{ifname} ";
-          "format-disconnected" = ""; # An empty format will hide the module.
+          "format-wifi" = " {essid} ({signalStrength}%)";
+          "format-ethernet" = " {ifname}";
+          "format-disconnected" = "󰖪"; # An empty format will hide the module.
           "tooltip-format" = "{ifname}";
-          "tooltip-format-wifi" = "{essid} ({signalStrength}%) ";
-          "tooltip-format-ethernet" = "{ifname} ";
+          "tooltip-format-wifi" = "  {essid} ({signalStrength}%)";
+          "tooltip-format-ethernet" = " {ifname}";
           "tooltip-format-disconnected" = "Disconnected";
           "max-length" = 50;
           "on-click" = "nm-connection-editor";
@@ -48,14 +48,14 @@
         "idle_inhibitor" = {
           "format" = "{icon}";
           "format-icons" = {
-            "activated" = "  idle_blocked";
+            "activated" = " idle_blocked";
             "deactivated" = " ";
           };
           "timeout" = 30.5; # minutes before reset
         };
         "bluetooth" = {
-          "format" = "bluetooth: {status}";
-          "format-connected" = " bluetooth: {device_alias}";
+          "format" = "󰂯 {status}";
+          "format-connected" = "󰂯 {device_alias}";
           # "format-connected-battery" = "   {device_alias} {device_battery_percentage}%";
           # "format-device-preference" = [ "device1"; "device2" ]; // preference list deciding the displayed device
           "tooltip-format" = "{controller_alias}\t{controller_address}\n\n{num_connections} connected";

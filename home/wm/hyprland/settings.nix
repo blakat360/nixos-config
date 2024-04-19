@@ -113,7 +113,8 @@
     "$mainMod, C, killactive,"
 
     "$mainMod, Q, exit,"
-    "$mainMod, F, togglefloating,"
+    "$mainMod_SHIFT, F, togglefloating,"
+    "$mainMod, F, fullscreen, 1"
 
     "$mainMod, D, exec, $menu"
     "$mainMod, T, togglesplit, " # dwindle

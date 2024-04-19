@@ -1,6 +1,13 @@
 { pkgs, ... }:
 let
   theme = "${pkgs.base16-schemes}/share/themes/solarized-dark.yaml";
+  font = {
+    name = "JetBrainsMonoNerdFontMono";
+    package =
+      (pkgs.nerdfonts.override {
+        fonts = [ "JetBrainsMono" ];
+      });
+  };
 in
 {
   stylix = {
@@ -10,27 +17,21 @@ in
     autoEnable = true;
 
     fonts = {
-      serif = {
-        name = "Cantarell";
-        package = pkgs.cantarell-fonts;
-      };
-
-      sansSerif = {
-        name = "Cantarell";
-        package = pkgs.cantarell-fonts;
-      };
-
-      monospace = {
-        name = "Monoisome Regular";
-        package = pkgs.monoid;
-      };
+      serif = font;
+      sansSerif = font;
+      monospace = font;
 
       sizes = {
         applications = 11;
-        desktop = 11;
+        desktop = 13;
         terminal = 12;
       };
     };
-
   };
 }
+
+
+
+
+
+

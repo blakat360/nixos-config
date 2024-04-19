@@ -93,7 +93,7 @@ in
     eza = {
       enable = true;
       enableFishIntegration = true;
-      icons = false;
+      icons = true;
       git = true;
     };
     fish = {
