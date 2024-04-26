@@ -13,6 +13,12 @@ command = "clangd"
 args = ["--enable-config"]
 
 [[language]]
+name = "erlang"
+roots = ["rebar.config", ".git"]
+auto-format = true
+formatter = {command = "erlfmt", args = ["-"]}
+
+[[language]]
 name = "cpp"
 language-servers = ["clangd"]
 roots = [".git", "CMakeLists.txt"]

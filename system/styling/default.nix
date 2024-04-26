@@ -22,7 +22,7 @@ in
       monospace = font;
 
       sizes = {
-        applications = 11;
+        applications = 12;
         desktop = 13;
         terminal = 12;
       };
