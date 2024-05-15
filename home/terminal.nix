@@ -22,11 +22,13 @@ in
     bat
     comma
     direnv
+    dust
     fd
     file
     grc
     helix
     htop-vim
+    inetutils
     jq
     libiconvReal
     mutt
@@ -37,11 +39,14 @@ in
     ripgrep
     sd
     starship
+    termshark
     tldr
     tree
     unzip
     wget
+    wireshark
     zathura
+    zip
   ];
 
   home.sessionVariables = {

@@ -34,6 +34,7 @@ in
       polkit-kde-agent
       wl-clipboard
       hyprpicker # colour picker
+      hyprshot
       powermenu
     ];
 

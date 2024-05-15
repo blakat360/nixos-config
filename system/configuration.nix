@@ -94,7 +94,7 @@
       shell = pkgs.fish;
       description = "${config.user}";
       initialPassword = "a";
-      extraGroups = [ "networkmanager" "wheel" "docker" ];
+      extraGroups = [ "networkmanager" "wheel" "docker" "wireshark" ];
       openssh.authorizedKeys.keys = [
         (import ./sshPub.nix)
       ];
@@ -121,6 +121,7 @@
     nix-ld.enable = true;
     steam.enable = true;
     fish.enable = true;
+    wireshark.enable = true;
   };
 
   programs.nix-ld.libraries = with pkgs; [

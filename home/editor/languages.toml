@@ -14,7 +14,7 @@ args = ["--enable-config"]
 
 [[language]]
 name = "erlang"
-roots = ["rebar.config", ".git"]
+roots = ["rebar.config", "erlang.mk", ".git"]
 auto-format = true
 formatter = {command = "erlfmt", args = ["-"]}
 
