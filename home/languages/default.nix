@@ -1,8 +1,9 @@
 { pkgs, ... }: {
   imports = [
-    ./go.nix
-    ./erlang.nix
     ./cpp.nix
+    ./elixir.nix
+    ./erlang.nix
+    ./go.nix
     ./rust.nix
     ./web-dev.nix
   ];
