@@ -20,6 +20,7 @@
       options = import ./options.nix;
     in
     {
+      dev_env_hm_mod = ./home/terminal;
       nixosConfigurations =
         let
           mkSystem = systemName: spec:
@@ -65,7 +66,6 @@
           builtins.mapAttrs mkSystem systemConfigs
         ) //
         {
-          dev_env_hm_mod = ./home/terminal;
           iso = nixpkgs.lib.nixosSystem
             {
               system = "x86_64-linux";
