@@ -22,6 +22,7 @@
     {
       dev_env_hm_mod = ./home/terminal.nix;
       inherit options;
+      styling = ./system/styling;
       nixosConfigurations =
         let
           mkSystem = systemName: spec:
