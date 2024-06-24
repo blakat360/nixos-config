@@ -65,6 +65,7 @@
           builtins.mapAttrs mkSystem systemConfigs
         ) //
         {
+          dev_env_hm_mod = ./home/terminal;
           iso = nixpkgs.lib.nixosSystem
             {
               system = "x86_64-linux";

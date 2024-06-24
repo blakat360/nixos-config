@@ -1,5 +1,6 @@
 { pkgs, ... }: {
   home.packages = with pkgs; [
+    boost179
     cling
     clang-tools
     cmake

@@ -8,5 +8,10 @@
     ./web-dev.nix
   ];
 
-  home.packages = with pkgs; [ nodePackages.prettier ];
+  home.packages = with pkgs; [
+    rabbitmq-c
+    flatbuffers
+    typescript
+    nodePackages.prettier
+  ];
 }
