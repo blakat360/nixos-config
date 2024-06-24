@@ -20,7 +20,7 @@
       options = import ./options.nix;
     in
     {
-      dev_env_hm_mod = ./home/terminal;
+      dev_env_hm_mod = ./home/terminal.nix;
       nixosConfigurations =
         let
           mkSystem = systemName: spec:
