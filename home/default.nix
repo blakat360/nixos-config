@@ -3,7 +3,6 @@
 {
   imports = [
     ./terminal.nix
-    ./editor
     ./personal-machine.nix
   ];
 

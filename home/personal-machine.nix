@@ -17,6 +17,7 @@
       pamixer
       rofi-bluetooth
       steam
+      shotcut
       vhs
       xsel
       zoom-us

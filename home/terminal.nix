@@ -15,6 +15,7 @@ in
   imports = [
     ./starship_settings.nix
     ./kitty.nix
+    ./editor
     ./languages
   ];
 
@@ -22,6 +23,7 @@ in
     bat
     comma
     direnv
+    dig
     dust
     fd
     file
@@ -34,7 +36,7 @@ in
     mutt
     parallel
     pup
-    (python3.withPackages (p: with p; [ python-lsp-server ])) # lsp support and bass fish plugin
+    (python310.withPackages (p: with p; [ python-lsp-server ])) # lsp support and bass fish plugin
     qemu
     ripgrep
     sd
