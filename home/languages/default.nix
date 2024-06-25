@@ -5,7 +5,8 @@
     ./erlang.nix
     ./go.nix
     ./rust.nix
-    ./web-dev.nix
+    # issues w work node setup I need to fix
+    # ./web-dev.nix
   ];
 
   home.packages = with pkgs; [

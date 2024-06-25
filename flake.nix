@@ -20,9 +20,13 @@
       options = import ./options.nix;
     in
     {
-      dev_env_hm_mod = ./home/terminal.nix;
-      inherit options;
-      styling = ./system/styling;
+      dev_env_hm_mod = { ... }: {
+        imports = [
+          ./home/terminal.nix
+          ./options.nix
+          ./system/styling
+        ];
+      };
       nixosConfigurations =
         let
           mkSystem = systemName: spec:
