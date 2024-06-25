@@ -22,6 +22,7 @@
     {
       dev_env_hm_mod = { ... }: {
         imports = [
+          stylix.homeManagerModules.stylix
           ./home/terminal.nix
           ./options.nix
           ./system/styling
