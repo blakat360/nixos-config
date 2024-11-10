@@ -118,6 +118,11 @@ in
         fish_greeting = ''
           	set options "(⚈∇⚈ )" "(✿╹◡╹)" "/ᐠ. ᴗ.ᐟ\\" "/ᐠ.ꞈ.ᐟ\\" "/ᐠ_ ꞈ _ᐟ\\"; echo (shuf -n 1 -e $options)
         '';
+
+        mkPython = ''
+          cat "${./templates/python_shell.template}" > shell.nix
+          echo "use nix" > .envrc
+        '';
       };
       plugins = with generated; [
         { name = getopts.pname; src = getopts.src; }

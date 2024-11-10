@@ -1,0 +1,59 @@
+with import <nixpkgs> { };
+
+let
+  venvDir = "./.venv";
+  pythonPackages = python310Packages;
+
+  NIX_LD_LIBRARY_PATH = lib.makeLibraryPath [
+    stdenv.cc.cc
+    openssl
+  ];
+
+  NIX_LD = lib.fileContents "${stdenv.cc}/nix-support/dynamic-linker";
+
+  # potentially dodgy, it's way safer to make wrapper scripts which set this for all the commands that need it
+  LD_LIBRARY_PATH = NIX_LD_LIBRARY_PATH;
+in
+pkgs.mkShell {
+  name = "impurePythonEnv";
+  buildInputs = [
+    stdenv.cc.cc.lib
+    pythonPackages.python
+    pythonPackages.pip
+  ];
+
+  inherit NIX_LD_LIBRARY_PATH NIX_LD LD_LIBRARY_PATH;
+
+  # This is very close to how venvShellHook is implemented, but
+  # adapted to use 'virtualenv'
+  shellHook = ''
+    SOURCE_DATE_EPOCH=$(date +%s)
+    FIRST_TIME=""
+
+    if [ -d "${venvDir}" ]; then
+      echo "Skipping venv creation, '${venvDir}' already exists"
+    else
+    FIRST_TIME=1
+      echo "Creating new venv environment in path: '${venvDir}'"
+      # Note that the module venv was only introduced in python 3, so for 2.7
+      # this needs to be replaced with a call to virtualenv
+      ${pythonPackages.python.interpreter} -m venv "${venvDir}"
+    fi
+
+    # Under some circumstances it might be necessary to add your virtual
+    # environment to PYTHONPATH, which you can do here too;
+    PYTHONPATH=$PWD/${venvDir}/${pythonPackages.python.sitePackages}/:$PYTHONPATH
+
+    source "${venvDir}/bin/activate"
+
+    if [ "$FIRST_TIME" = 1 ]; then
+      echo setting up dev env
+
+      pip install 'python-lsp-server[all]' 
+      pip install 'black' 
+
+      echo dev env setup done
+    fi
+  '';
+}
+
