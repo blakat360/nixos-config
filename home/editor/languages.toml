@@ -1,12 +1,6 @@
-[language-server.python-lsp]
-command = "pyright-langserver"
-config = ""
-args = ["--stdio"]
-
 [language-server.nix-lsp]
 command = "nil"
 args = ["--stdio"]
-
 
 [language-server.clangd]
 command = "clangd"
@@ -26,10 +20,15 @@ auto-format = true
 
 [[language]]
 name = "python"
+formatter = {command = 'black', args = ["--quiet", "-"]}
 roots = ["pyproject.toml", "setup.py", "Poetry.lock", ".git"]
 auto-format = true
-language-servers = ["python-lsp"]
-formatter = {command = 'black', args = ["--quiet", "-"]}
+
+# [[language]]
+# name = "python"
+# auto-format = true
+# language-servers = ["python-lsp"]
+# formatter = {command = 'black', args = ["--quiet", "-"]}
 
 [[language]]
 name = "nix"
