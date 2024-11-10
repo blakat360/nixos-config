@@ -36,7 +36,7 @@ in
     mutt
     parallel
     pup
-    (python310.withPackages (p: with p; [ python-lsp-server ])) # lsp support and bass fish plugin
+    python3
     qemu
     ripgrep
     sd
@@ -100,7 +100,7 @@ in
     eza = {
       enable = true;
       enableFishIntegration = true;
-      icons = true;
+      icons = "auto";
       git = true;
     };
     fish = {

@@ -5,6 +5,7 @@
     clang-tools
     cmake
     gcc
+    gdb
     gnumake
     ninja
   ];

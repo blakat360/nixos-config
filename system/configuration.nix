@@ -8,7 +8,7 @@
     ];
 
   nix = {
-    package = pkgs.nixFlakes;
+    package = pkgs.nixVersions.stable;
     settings = {
       trusted-substituters = [
         "https://nix-community.cachix.org"
@@ -68,7 +68,6 @@
   console.keyMap = "us";
 
   # Enable sound with pipewire.
-  sound.enable = true;
   hardware = {
     pulseaudio.enable = false;
     xpadneo.enable = true;
@@ -180,9 +179,7 @@
 
   hardware = {
     bluetooth.enable = true;
-    opengl = {
-      enable = true;
-    };
+    graphics.enable = true;
   };
 
   # Some programs need SUID wrappers, can be configured further or are

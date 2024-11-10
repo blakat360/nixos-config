@@ -63,7 +63,8 @@
                   };
 
                   home-manager.extraSpecialArgs = {
-                    inherit stylix nixos-hardware;
+                    inherit nixos-hardware;
+                    inherit (stylix.homeManagerModules) stylix;
                   };
                 }
               ];
