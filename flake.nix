@@ -11,10 +11,18 @@
     disko.url = "github:nix-community/disko";
 
     stylix.url = "github:danth/stylix";
+
+    emacs-overlay = {
+      url = "github:nix-community/emacs-overlay";
+      inputs = {
+        nixpkgs.follows = "nixpkgs";
+        nixpkgs-stable.follows = "nixpkgs";
+      };
+    };
   };
 
   outputs =
-    { nixpkgs, home-manager, nixos-hardware, stylix, disko, ... }:
+    { nixpkgs, home-manager, nixos-hardware, stylix, disko, emacs-overlay, ... }:
     let
       systemConfigs = import ./systemConfigs.nix;
       options = import ./options.nix;
@@ -33,7 +41,7 @@
           mkSystem = systemName: spec:
             nixpkgs.lib.nixosSystem {
               specialArgs = {
-                inherit nixos-hardware stylix;
+                inherit nixos-hardware stylix emacs-overlay;
               };
               system = "x86_64-linux";
               modules = [
@@ -43,6 +51,7 @@
                 disko.nixosModules.disko
                 ({ config, ... }: {
                   networking.hostName = systemName;
+                  nixpkgs.overlays = [ emacs-overlay.overlays.default ];
                 })
                 ./system/configuration.nix
                 home-manager.nixosModules.home-manager

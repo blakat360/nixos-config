@@ -61,6 +61,11 @@
     udisks2.enable = true;
     fstrim.enable = true;
     udev.extraRules = "SUBSYSTEM==\"power_supply\", ATTR{status}==\"Discharging\", ATTR{capacity}==\"[0-10]\", RUN+=\"${pkgs.dunst}/bin/dunstify \"WARNING LOW BATTERY\"\n";
+
+    emacs = {
+      enable = true;
+      package = pkgs.emacs-unstable-pgtk;
+    };
   };
   virtualisation.docker.enable = true;
 

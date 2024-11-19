@@ -4,6 +4,7 @@
   imports = [
     ./terminal.nix
     ./personal-machine.nix
+    ./emacs.nix
   ];
 
   home = {
