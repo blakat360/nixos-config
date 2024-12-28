@@ -14,11 +14,10 @@
       brightnessctl
       chromium
       firefox
-      heroic
       pamixer
       rofi-bluetooth
       steam
-      shotcut
+      # shotcut # not currently working
       vhs
       xsel
       xournalpp

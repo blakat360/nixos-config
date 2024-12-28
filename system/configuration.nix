@@ -37,6 +37,7 @@
       };
     };
     kernelPackages = pkgs.linuxPackages_latest;
+    tmp.useTmpfs = true;
   };
 
   networking = {

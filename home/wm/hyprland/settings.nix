@@ -52,7 +52,6 @@
     rounding = 10;
 
     blur.enabled = false;
-    drop_shadow = false;
   };
 
   animations =

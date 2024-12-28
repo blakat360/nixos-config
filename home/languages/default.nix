@@ -14,5 +14,6 @@
     flatbuffers
     typescript
     nodePackages.prettier
+    pyright
   ];
 }
