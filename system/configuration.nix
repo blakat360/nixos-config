@@ -9,15 +9,20 @@
 
   nix = {
     package = pkgs.nixVersions.stable;
-    settings = {
-      trusted-substituters = [
-        "https://nix-community.cachix.org"
-        "https://hydra.nixos.org"
-      ];
-      trusted-users = [
-        "@wheel"
-      ];
-    };
+    settings =
+      let
+        substituters = [
+          "https://nix-community.cachix.org"
+          "https://hydra.nixos.org"
+        ];
+      in
+      {
+        inherit substituters;
+        trusted-substituters = substituters;
+        trusted-users = [
+          "@wheel"
+        ];
+      };
     extraOptions = ''
       experimental-features = nix-command flakes
       keep-outputs = true
@@ -65,9 +70,15 @@
 
     emacs = {
       enable = true;
-      package = pkgs.emacs-unstable-pgtk;
+      package = (pkgs.emacsPackagesFor pkgs.emacs-git).emacsWithPackages
+        (epkgs: with epkgs; [
+          vterm
+          treesit-grammars.with-all-grammars
+        ]);
+      # package = pkgs.emacs-unstable-pgtk;
     };
   };
+
   virtualisation.docker.enable = true;
 
   # keymap in tty
