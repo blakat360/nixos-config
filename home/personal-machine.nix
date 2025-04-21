@@ -15,7 +15,7 @@
       chromium
       firefox
       pamixer
-      # need to update before enabling - quickmenu # ez vm setup
+      quickemu # ez vm setup
       rofi-bluetooth
       obsidian
       steam

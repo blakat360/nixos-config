@@ -31,7 +31,7 @@ in
       libsForQt5.dolphin
       qt6.qtwayland
       libnotify
-      polkit-kde-agent
+      kdePackages.polkit-kde-agent-1
       wl-clipboard
       hyprpicker # colour picker
       hyprshot
