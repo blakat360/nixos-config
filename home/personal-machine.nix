@@ -19,7 +19,6 @@
       rofi-bluetooth
       obsidian
       steam
-      wf-recorder
       vhs
       xsel
       xournalpp

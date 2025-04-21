@@ -32,7 +32,9 @@ in
       qt6.qtwayland
       libnotify
       kdePackages.polkit-kde-agent-1
+      wf-recorder # screen record
       wl-clipboard
+      hyprcursor
       hyprpicker # colour picker
       hyprshot
       powermenu

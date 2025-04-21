@@ -1,4 +1,4 @@
-{ pkgs, config, ... }:
+{ pkgs, ... }:
 let
   theme = "${pkgs.base16-schemes}/share/themes/solarized-dark.yaml";
   font = {
@@ -18,6 +18,12 @@ in
     base16Scheme = theme;
 
     autoEnable = true;
+
+    cursor = {
+      package = pkgs.bibata-cursors;
+      name = "Bibata-Modern-Ice";
+      size = 24;
+    };
 
     fonts = {
       serif = font;
