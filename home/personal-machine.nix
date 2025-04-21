@@ -15,9 +15,11 @@
       chromium
       firefox
       pamixer
+      # need to update before enabling - quickmenu # ez vm setup
       rofi-bluetooth
+      obsidian
       steam
-      # shotcut # not currently working
+      wf-recorder
       vhs
       xsel
       xournalpp

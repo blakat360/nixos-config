@@ -10,6 +10,9 @@
   ];
 
   home.packages = with pkgs; [
+    idris2
+    idris2Packages.idris2Lsp
+    chez
     rabbitmq-c
     flatbuffers
     typescript
