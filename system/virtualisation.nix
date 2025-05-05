@@ -18,5 +18,7 @@
     };
 
     services.interception-tools.enable = lib.mkForce false;
+
+    containers.ociSeccompBpfHook.enable = true;
   };
 }
