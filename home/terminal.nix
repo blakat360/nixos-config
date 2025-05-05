@@ -22,8 +22,8 @@ in
   home.packages = with pkgs; [
     bat
     comma
-    direnv
     dig
+    direnv
     dust
     fd
     file
@@ -35,6 +35,7 @@ in
     libiconvReal
     mutt
     parallel
+    podman
     pup
     python3
     qemu

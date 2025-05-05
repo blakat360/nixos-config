@@ -3,6 +3,7 @@
 {
   imports = [
     ./discord.nix
+    ./pentesting.nix
     ./wm/hyprland
     ./rofi
   ];
