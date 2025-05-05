@@ -46,6 +46,7 @@ in
     tldr
     tree
     unzip
+    uv
     wget
     wireshark
     zathura
