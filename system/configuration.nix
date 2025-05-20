@@ -59,7 +59,10 @@
 
   };
 
-  virtualisation.docker.enable = true;
+  virtualisation.docker = {
+    enable = true;
+    enableOnBoot = false;
+  };
 
   # keymap in tty
   console.keyMap = "us";
